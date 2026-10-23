@@ -1,5 +1,5 @@
 :HL["/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","style"]
-:HL["/glamping-preview/_next/static/chunks/0inunc56itwp4.css","style"]
+:HL["/glamping-preview/_next/static/chunks/41tuuvuog0yxy.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"projects","h":96,"c":"$Q2"}]]
-0:{"b":"Ij15A2K_vzUawt70VjfmO","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"yu1kMWr-HpF9TUSyuofBX","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

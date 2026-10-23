@@ -1,4 +1,4 @@
 :HL["/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","style"]
 2:[["children",{"s":"__PAGE__","h":160}]]
 1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
-0:{"b":"Ij15A2K_vzUawt70VjfmO","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"yu1kMWr-HpF9TUSyuofBX","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
