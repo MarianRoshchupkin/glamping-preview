@@ -1,23 +1,23 @@
 1:"$Sreact.fragment"
-2:"/glamping-preview/_next/static/chunks/170a0ty6a-xr9.js"
-3:I[56032,["$2"],"default"]
-4:I[86443,["$2"],"default"]
+2:"/glamping-preview/_next/static/chunks/2qxqnbw0-dtzm.js"
+3:I[3260,["$2"],"default"]
+4:I[4373,["$2"],"default"]
 16:"ViewportBoundary"
-17:I[56491,["$2"],"$16"]
+17:I[43623,["$2"],"$16"]
 19:"MetadataBoundary"
-1a:I[56491,["$2"],"$19"]
+1a:I[43623,["$2"],"$19"]
 1b:"$Sreact.suspense"
-1d:I[83743,["$2"],"default",1]
+1d:I[17304,["$2"],"default",1]
 :HL["/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","style"]
-:HL["/glamping-preview/_next/static/chunks/25q2owyppp-ib.css","style"]
+:HL["/glamping-preview/_next/static/chunks/0inunc56itwp4.css","style"]
 6:X
-8:T8e691,<div class="structural-track">
+8:T8e6ab,<div class="structural-track">
           <div class="structural-stage">
             <div class="stage-head">
               <p class="mono">01 / БУМАЖНАЯ АРХИТЕКТУРА</p>
               <h1 id="scene-title">За формой —<br /><em>система.</em></h1>
               <p class="paper-intro">
-                Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации.
+                <span>Проекты жилых модулей временного проживания —</span> <span>от архитектурного образа до проектной документации.</span>
               </p>
               <nav class="paper-actions" aria-label="Проекты и документация">
                 <a href="#catalog">К проектам ↗</a
@@ -4618,16 +4618,16 @@
           Выберите конструктивную группу, чтобы рассмотреть её. Повторное
           нажатие или Escape возвращает полную схему.
         </p>26:"/glamping-preview/_next/static/chunks/3irokl-spf5ax.js"
-27:"/glamping-preview/_next/static/chunks/3udb5d22n2y75.js"
+27:"/glamping-preview/_next/static/chunks/0auomnk8vuwm-.js"
 28:"WebsiteEnhancement"
 29:I[14793,["$2","$26","$27"],"$28"]
-2a:I[56491,["$2"],"OutletBoundary"]
-2d:"ContentPreviewEnhancement"
-2e:I[76873,["$2","$26","$27"],"$2d"]
-2f:I[89543,["$2"],"IconMark"]
-7:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"final-website","data-sheet":"a","data-spread":"2.4","data-entry":"paper","suppressHydrationWarning":true,"children":[["$","span",null,{"hidden":true,"data-website-boot":true,"dangerouslySetInnerHTML":{"__html":"<script>document.currentScript.parentElement.parentElement.classList.toggle(\"scene-capable\",matchMedia(\"(prefers-reduced-motion:no-preference) and (min-height:600px)\").matches);document.currentScript.parentElement.parentElement.classList.add(\"gallery-capable\");</script>"}}],["$","nav",null,{"aria-label":"Быстрый переход к содержимому","children":["$","a",null,{"className":"skip","href":"#main-content","children":"Перейти к содержимому"}]}],["$","header",null,{"className":"header","children":[["$","a",null,{"className":"wordmark","href":"#structure","children":["Архитектура",["$","br",null,{}],["$","em",null,{"children":"ближе к природе"}]]}],["$","nav",null,{"aria-label":"Разделы","children":[["$","a",null,{"href":"#about","children":"О проекте"}],["$","a",null,{"href":"#catalog","children":"Проекты"}],["$","a",null,{"href":"#documentation","children":"Документация"}],["$","a",null,{"href":"#archive","children":"Галерея"}],["$","a",null,{"href":"#contacts","children":"Контакты"}]]}]]}],["$","main",null,{"id":"main-content","tabIndex":-1,"children":[["$","section",null,{"id":"structure","aria-labelledby":"scene-title","data-frozen-art":true,"dangerouslySetInnerHTML":{"__html":"$8"}}],"$L9","$La","$Lb","$Lc","$Ld","$Le","$Lf"]}],"$L10","$L11"]}],["$L12","$L13","$L14"],"$L15"]}],"p":false,"v":null}}]]
+2a:I[43623,["$2"],"OutletBoundary"]
+2c:"ContentPreviewEnhancement"
+2d:I[76873,["$2","$26","$27"],"$2c"]
+2e:I[88622,["$2"],"IconMark"]
+7:[["children",{"s":"__PAGE__","h":512,"d":{"r":["$","$1","c",{"children":[["$","div",null,{"className":"final-website","data-sheet":"a","data-spread":"2.4","data-entry":"paper","suppressHydrationWarning":true,"children":[["$","span",null,{"hidden":true,"data-website-boot":true,"dangerouslySetInnerHTML":{"__html":"<script>document.currentScript.parentElement.parentElement.classList.toggle(\"scene-capable\",matchMedia(\"(prefers-reduced-motion:no-preference) and (min-height:600px)\").matches);document.currentScript.parentElement.parentElement.classList.add(\"gallery-capable\");</script>"}}],["$","nav",null,{"aria-label":"Быстрый переход к содержимому","children":["$","a",null,{"className":"skip","href":"#main-content","children":"Перейти к содержимому"}]}],["$","header",null,{"className":"header","children":[["$","a",null,{"className":"wordmark","href":"#structure","children":["Архитектура",["$","br",null,{}],["$","em",null,{"children":"ближе к природе"}]]}],["$","button",null,{"className":"header-menu-toggle","type":"button","aria-controls":"section-navigation","aria-expanded":"false","children":["Разделы ",["$","span",null,{"aria-hidden":"true","children":"+"}]]}],["$","nav",null,{"id":"section-navigation","aria-label":"Разделы","children":[["$","a",null,{"href":"#about","children":"О проекте"}],["$","a",null,{"href":"#catalog","children":"Проекты"}],["$","a",null,{"href":"#documentation","children":"Документация"}],["$","a",null,{"href":"#archive","children":"Галерея"}],["$","a",null,{"href":"#contacts","children":"Контакты"}]]}]]}],["$","main",null,{"id":"main-content","tabIndex":-1,"children":[["$","section",null,{"id":"structure","aria-labelledby":"scene-title","data-frozen-art":true,"dangerouslySetInnerHTML":{"__html":"$8"}}],"$L9","$La","$Lb","$Lc","$Ld","$Le","$Lf"]}],"$L10","$L11"]}],["$L12","$L13","$L14"],"$L15"]}],"p":false,"v":null}}]]
 5:[["children",{"s":"projects","h":512,"d":{"r":["$","$1","c",{"children":[null,["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],"p":false,"v":"$6"},"c":"$Q7"}]]
-0:{"P":null,"c":["","projects",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/glamping-preview/_next/static/chunks/170a0ty6a-xr9.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ru","children":["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$1b",null,{"name":"Next.Metadata","children":"$L1c"}]}],null]}],null]}],"p":false,"v":null}},"m":"$undefined","G":["$1d",[["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"B3mkXgLws2iUZ7szMRaol"}
+0:{"P":null,"c":["","projects",""],"q":"","i":false,"t":{"t":{"s":"","h":528,"d":{"r":["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/glamping-preview/_next/static/chunks/2qxqnbw0-dtzm.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ru","children":["$","body",null,{"children":["$","$L3",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L4",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],"p":false,"v":null},"c":"$Q5"},"h":{"r":["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","$L1a",null,{"children":[["$","div",null,{"hidden":true,"children":["$","$1b",null,{"name":"Next.Metadata","children":"$L1c"}]}],null]}],null]}],"p":false,"v":null}},"m":"$undefined","G":["$1d",[["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"S":true,"r":"$undefined","s":"$undefined","a":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Ij15A2K_vzUawt70VjfmO"}
 6:C
 1e:T9de1,<div class="folio-head gallery-folio">
           <p class="mono">02 / АТЛАС ОБРАЗОВ</p>
@@ -5480,48 +5480,15 @@ d:["$","section",null,{"className":"dossier drawing-section","id":"dossier","ari
 f:["$","section",null,{"className":"website-contacts drawing-section","id":"contacts","aria-labelledby":"contacts-title","children":[["$","div",null,{"className":"folio-head","children":[["$","p",null,{"className":"mono","children":"КОНТАКТЫ"}],["$","span",null,{"className":"mono","children":"СВЯЗЬ С РАЗРАБОТЧИКОМ"}]]}],["$","div",null,{"className":"website-contacts-grid","children":[["$","h2",null,{"id":"contacts-title","children":["Обсудить",["$","br",null,{}],["$","em",null,{"children":"проект."}]]}],["$","div",null,{"className":"website-contact-details","children":[false,["$","p",null,{"children":"Контакт разработчика будет опубликован после согласования."}],false]}]]}]]}]
 10:["$","footer",null,{"className":"website-footer","children":[["$","div",null,{"className":"website-footer-top","children":[["$","div",null,{"className":"website-fsi","children":[["$","p",null,{"children":"Продукт разработан при поддержке ФСИ"}],null]}],["$","nav",null,{"aria-label":"Разделы сайта","children":[["$","a",null,{"href":"#about","children":"О проекте"}],["$","a",null,{"href":"#archive","children":"Галерея"}],["$","a",null,{"href":"#documentation","children":"Документация"}],["$","a",null,{"href":"#catalog","children":"Проекты"}],["$","a",null,{"href":"#dossier","children":"Приобретение"}],["$","a",null,{"href":"#contacts","children":"Контакты"}],["$","a",null,{"href":"#structure","children":"К началу ↑"}]]}]]}],["$","div",null,{"className":"website-footer-bottom","children":[["$","div",null,{"children":[["$","p",null,{"children":"Предварительная версия для согласования"}],false,false,false]}],["$","div",null,{"className":"footer-contact-links","children":[null,false]}]]}]]}]
 11:["$","$L29",null,{}]
-12:["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/25q2owyppp-ib.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+12:["$","link","0",{"rel":"stylesheet","href":"/glamping-preview/_next/static/chunks/0inunc56itwp4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 13:["$","script","script-0",{"src":"/glamping-preview/_next/static/chunks/3irokl-spf5ax.js","async":true,"nonce":"$undefined"}]
-14:["$","script","script-1",{"src":"/glamping-preview/_next/static/chunks/3udb5d22n2y75.js","async":true,"nonce":"$undefined"}]
+14:["$","script","script-1",{"src":"/glamping-preview/_next/static/chunks/0auomnk8vuwm-.js","async":true,"nonce":"$undefined"}]
 15:["$","$L2a",null,{"children":["$","$1b",null,{"name":"Next.MetadataOutlet","children":"$@2b"}]}]
-2c:T478,<div class="gallery-dialog-head">
-          <h2 id="gallery-dialog-title">Изображение</h2>
-          <button type="button" id="gallery-close">Закрыть ×</button>
-        </div>
-        <div class="gallery-dialog-picture">
-          <img id="gallery-dialog-image" alt="" width="1600" height="900" />
-          <p
-            id="gallery-dialog-error"
-            class="gallery-error"
-            role="status"
-            hidden
-          ></p>
-        </div>
-        <p id="gallery-dialog-caption"></p>
-        <div class="gallery-dialog-controls">
-          <button
-            type="button"
-            id="gallery-dialog-previous"
-            aria-label="Предыдущий кадр"
-          >
-            ← <span>Предыдущий</span></button
-          ><span
-            id="gallery-dialog-count"
-            class="gallery-mono"
-            aria-live="polite"
-          ></span
-          ><button
-            type="button"
-            id="gallery-dialog-next"
-            aria-label="Следующий кадр"
-          >
-            <span>Следующий</span> →
-          </button>
-        </div>1f:["$","dialog",null,{"className":"gallery-dialog","id":"gallery-dialog","aria-labelledby":"gallery-dialog-title","aria-describedby":"gallery-dialog-caption","data-frozen-art":true,"dangerouslySetInnerHTML":{"__html":"$2c"}}]
+1f:["$","dialog",null,{"className":"gallery-dialog","id":"gallery-dialog","aria-labelledby":"gallery-dialog-title","data-frozen-art":true,"dangerouslySetInnerHTML":{"__html":"\n  <div class=\"gallery-dialog-head\">\n    <div class=\"gallery-dialog-label\">\n      <h2 id=\"gallery-dialog-title\">Галерея</h2>\n      <span aria-hidden=\"true\">/</span>\n      <span id=\"gallery-dialog-count\" class=\"gallery-mono\" aria-live=\"polite\" aria-atomic=\"true\"></span>\n    </div>\n    <button type=\"button\" id=\"gallery-close\" aria-label=\"Закрыть галерею\"><span aria-hidden=\"true\">×</span></button>\n  </div>\n  <div class=\"gallery-dialog-picture\">\n    <img id=\"gallery-dialog-image\" alt=\"\" width=\"1600\" height=\"900\" />\n    <p id=\"gallery-dialog-error\" class=\"gallery-error\" role=\"status\" hidden></p>\n  </div>\n  <div class=\"gallery-dialog-controls\">\n    <button type=\"button\" id=\"gallery-dialog-previous\" aria-label=\"Предыдущий кадр\"><span aria-hidden=\"true\">←</span></button>\n    <button type=\"button\" id=\"gallery-dialog-next\" aria-label=\"Следующий кадр\"><span aria-hidden=\"true\">→</span></button>\n  </div>"}}]
 21:["$","summary",null,{"children":[["$","span",null,{"className":"document-number mono","children":["0",3]}],["$","span",null,{"className":"document-code","children":"ИР"}],["$","span",null,{"className":"document-name","children":"Интерьерные решения"}],["$","span",null,{"className":"document-toggle","aria-hidden":"true","children":"↗"}]]}]
 22:["$","div",null,{"className":"document-content","children":[["$","p",null,{"className":"document-lead","children":"Организация и характер внутренних пространств."}],null,false,null]}]
 23:["$","p",null,{"className":"content-note documentation-preview-note","children":"Примеры листов будут представлены после согласования материалов."}]
-24:["$","$L2e",null,{}]
+24:["$","$L2d",null,{}]
 18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-1c:[["$","title","0",{"children":"За формой — система · Проектная документация жилых модулей"}],["$","meta","1",{"name":"description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"За формой — система · Проектная документация жилых модулей"}],["$","meta","4",{"property":"og:description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","meta","5",{"property":"og:locale","content":"ru_RU"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"За формой — система · Проектная документация жилых модулей"}],["$","meta","9",{"name":"twitter:description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","link","10",{"rel":"icon","href":"/glamping-preview/icon.svg"}],["$","$L2f","11",{}]]
+1c:[["$","title","0",{"children":"За формой — система · Проектная документация жилых модулей"}],["$","meta","1",{"name":"description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","meta","2",{"name":"robots","content":"noindex, nofollow"}],["$","meta","3",{"property":"og:title","content":"За формой — система · Проектная документация жилых модулей"}],["$","meta","4",{"property":"og:description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","meta","5",{"property":"og:locale","content":"ru_RU"}],["$","meta","6",{"property":"og:type","content":"website"}],["$","meta","7",{"name":"twitter:card","content":"summary"}],["$","meta","8",{"name":"twitter:title","content":"За формой — система · Проектная документация жилых модулей"}],["$","meta","9",{"name":"twitter:description","content":"Проекты жилых модулей временного проживания — от архитектурного образа до проектной документации."}],["$","link","10",{"rel":"icon","href":"/glamping-preview/icon.svg"}],["$","$L2e","11",{}]]
 2b:null

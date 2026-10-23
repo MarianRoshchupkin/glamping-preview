@@ -1,4 +1,4 @@
 :HL["/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","style"]
-:HL["/glamping-preview/_next/static/chunks/25q2owyppp-ib.css","style"]
+:HL["/glamping-preview/_next/static/chunks/0inunc56itwp4.css","style"]
 1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"B3mkXgLws2iUZ7szMRaol","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
+0:{"b":"Ij15A2K_vzUawt70VjfmO","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
