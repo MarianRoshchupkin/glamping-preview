@@ -1,0 +1,393 @@
+html {
+  --gutter: clamp(22px, 4vw, 80px);
+  background: #f1efe7;
+}
+html[data-folio="b"] {
+  background: #fff;
+}
+.fsi-support {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.fsi-mark {
+  display: block;
+  padding: max(50px, 1.403vw);
+  flex-shrink: 0;
+}
+.fsi-mark img {
+  display: block;
+  width: max(176px, 5vw);
+  max-width: none;
+  height: auto;
+}
+@media (max-width: 1100px) {
+  .fsi-support {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+body {
+  background: transparent;
+}
+.masthead {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  color: #fff;
+  border-color: #ffffff55;
+}
+.masthead > a:last-child {
+  background: #142a21cc;
+  padding: 5px 12px;
+}
+.masthead .mast-caption {
+  color: inherit;
+}
+.photo-cover .cover-copy h1 {
+  max-width: none;
+}
+.photo-cover .cover-copy p {
+  max-width: 54ch;
+}
+.photo-cover .cover-copy.intro {
+  display: block;
+  padding: 0;
+}
+.photo-cover .cover-copy.intro > p:last-child {
+  color: #fff;
+}
+.cover-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px var(--gutter);
+  gap: 28px;
+  color: #fff;
+}
+.cover-header nav {
+  display: flex;
+  gap: 24px;
+}
+.cover-header nav a {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+}
+.cover-menu {
+  display: none;
+}
+body:has(
+    .opening[data-transfer="active"],
+    .opening[data-transfer="preparing"],
+    .opening[data-transfer="complete"]
+  )
+  .cover-header {
+  visibility: hidden;
+}
+.photo-cover .cover-copy {
+  bottom: 14%;
+}
+.photo-cover .cover-controls {
+  bottom: 14%;
+}
+.photo-cover .cover-controls button {
+  padding: 0;
+}
+.opening .origin {
+  position: relative;
+  z-index: 2;
+  background: #f1efe7;
+  padding-top: 65px;
+}
+.origin h2 {
+  margin: 18px 0 35px;
+}
+.origin figure {
+  width: 100%;
+}
+#origin-photo {
+  display: block;
+  height: 68svh;
+  min-height: 380px;
+  background: #1d2925;
+}
+#origin-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 68%;
+}
+.origin figcaption {
+  padding-top: 14px;
+}
+.opening[data-transfer="active"] .photo-cover .slides,
+.opening[data-transfer="active"] #origin-photo img {
+  visibility: hidden;
+}
+.opening[data-transfer="active"] #origin-photo {
+  background: transparent;
+}
+.opening[data-transfer="active"] :is(#origin-title, .origin-folio) {
+  opacity: var(--atlas-copy, 0);
+}
+.technical-caption {
+  padding-bottom: 60px;
+}
+.technical-caption h2 {
+  margin: 18px 0 25px;
+}
+.technical-caption p:last-child {
+  max-width: 62ch;
+}
+.engineering-proof.final-website {
+  --paper: #f1efe7;
+  --ink: #24332b;
+  --graphite: #24332b;
+  --gutter: clamp(22px, 4vw, 80px);
+  color: #24332b;
+  background: #f1efe7;
+}
+.engineering-proof.final-website #engineering .engineering-surface {
+  background: #123f71 !important;
+}
+.engineering-proof.final-website #engineering .engineering-surface::after {
+  background: #f1efe7;
+}
+.engineering-proof.final-website #engineering .structural-stage {
+  background: #f1efe7;
+}
+.engineering-proof.final-website
+  #engineering
+  :is(
+    .sheet-frame,
+    .sheet-register,
+    .sheet-inner,
+    .sheet-footer,
+    .sheet-field-label
+  ) {
+  visibility: visible !important;
+}
+.engineering-proof.final-website #engineering .sheet-frame {
+  color: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .sheet-register {
+  color: #d8e4ed;
+}
+.engineering-proof.final-website #engineering .sheet-field-label {
+  visibility: hidden !important;
+}
+.engineering-proof.final-website #engineering .sheet-footer {
+  bottom: 15%;
+  color: #d8e4ed;
+}
+.engineering-proof.final-website #engineering .sheet-stamp {
+  display: none;
+}
+.engineering-proof.final-website #engineering .sheet-key {
+  opacity: var(--doc-secondary, 1);
+}
+.engineering-proof.final-website #engineering .study-heading {
+  top: 9%;
+  left: 6%;
+}
+.engineering-proof.final-website #engineering .study-kicker {
+  margin-bottom: 12px;
+}
+.engineering-proof.final-website #engineering .study-display {
+  margin: 0;
+}
+.engineering-proof.final-website #engineering .study-note {
+  max-width: 65%;
+  bottom: 5%;
+}
+.engineering-proof.final-website #engineering .study-controls {
+  bottom: 4%;
+}
+.engineering-proof.final-website #engineering .study-controls a {
+  padding: 8px 0;
+}
+.engineering-proof.final-website #engineering .annotation {
+  max-width: 190px;
+}
+.engineering-proof.final-website #engineering .annotation strong {
+  display: none;
+}
+.engineering-proof.final-website #engineering .structural-focus {
+  padding: 6px;
+}
+.engineering-proof.final-website #engineering .unified-main {
+  top: 29%;
+}
+.engineering-proof.final-website #engineering .document-handoff-label {
+  top: 12%;
+}
+.engineering-proof.final-website #engineering .atlas-handoff-image {
+  position: absolute;
+  z-index: 7;
+  left: 54%;
+  top: 28%;
+  width: 37%;
+  height: 58%;
+  opacity: var(--doc-photo, 0);
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .atlas-handoff-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.engineering-proof.final-website #engineering .unified-heading h2 {
+  max-width: 90%;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .study-controls {
+  display: none;
+}
+.engineering-proof.final-website #engineering #scene-message {
+  position: relative;
+}
+html[data-folio="b"] .opening .origin {
+  background: #fff;
+}
+html[data-folio="c"] :is(.architecture-section, .documentation) {
+  background-image:
+    linear-gradient(#24332b0b 1px, transparent 1px),
+    linear-gradient(90deg, #24332b0b 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+html[data-folio="c"] .architecture-section {
+  border-inline: 1px solid #8d998d;
+  margin-inline: 22px;
+}
+html[data-folio="c"] .section-heading {
+  border-left: 1px solid #8d998d;
+  padding-left: 22px;
+}
+@media (max-width: 900px) {
+  .cover-header .cover-desktop {
+    display: none;
+  }
+  .cover-menu {
+    display: block;
+  }
+  .cover-menu summary {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    cursor: pointer;
+  }
+  .cover-menu nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    padding: 18px var(--gutter);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: #f1efe7;
+    color: #24332b;
+    gap: 8px 24px;
+  }
+  .photo-cover .cover-copy {
+    bottom: 22%;
+    left: 6vw;
+    right: 6vw;
+  }
+  .photo-cover .cover-controls {
+    bottom: 6%;
+  }
+  .masthead {
+    padding: 18px 6vw;
+  }
+  .mast-caption {
+    display: none;
+  }
+  #origin-photo {
+    height: 62svh;
+    min-height: 340px;
+  }
+  .opening[data-transfer="active"] #origin-title {
+    opacity: var(--atlas-title, 0);
+    transform: translateY(var(--atlas-title-y, 0px));
+  }
+  .opening[data-transfer="active"] .origin-folio {
+    opacity: var(--atlas-title, 0);
+    transform: translateY(var(--atlas-folio-y, 0px));
+  }
+}
+@media (max-width: 600px) {
+  .engineering-proof.final-website #engineering .sheet-frame {
+    inset: 0;
+  }
+  .engineering-proof.final-website #engineering .sheet-register-top {
+    inset: 20px 20px auto;
+  }
+  .engineering-proof.final-website #engineering .sheet-register-left {
+    left: 18px;
+    top: 48px;
+    bottom: 48px;
+  }
+  .engineering-proof.final-website
+    #engineering
+    :is(.sheet-inner, .sheet-field-label, .sheet-key) {
+    visibility: hidden !important;
+  }
+  .engineering-proof.final-website #engineering .study-heading {
+    top: 8%;
+    left: 7%;
+  }
+  .engineering-proof.final-website #engineering .study-note {
+    max-width: 90%;
+    bottom: 2%;
+  }
+  .engineering-proof.final-website #engineering .study-controls {
+    bottom: 9%;
+  }
+  .engineering-proof.final-website #engineering .annotation-layer {
+    top: 74%;
+    left: 7%;
+    right: 7%;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0 5px;
+  }
+  .engineering-proof.final-website #engineering .structural-focus {
+    min-height: 44px;
+    padding: 3px 5px;
+  }
+  .engineering-proof.final-website #engineering .annotation {
+    max-width: none;
+  }
+  .engineering-proof.final-website #engineering .atlas-handoff-image {
+    left: 18%;
+    top: 29%;
+    width: 64%;
+    height: 43%;
+  }
+  .engineering-proof.final-website
+    #engineering
+    .engineering-layer
+    > .geometry-frame {
+    height: 26%;
+  }
+  .engineering-proof.final-website #engineering .sheet-register-left {
+    visibility: hidden !important;
+  }
+  html[data-folio="c"] .architecture-section {
+    margin-inline: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+  .opening .photo-cover {
+    min-height: 100svh;
+  }
+  .engineering-proof.final-website #engineering .engineering-layer {
+    min-height: 100svh;
+  }
+}

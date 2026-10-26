@@ -1,0 +1,391 @@
+.photo-cover {
+  position: relative;
+  isolation: isolate;
+  height: 100vh;
+  height: 100svh;
+  min-height: 540px;
+  overflow: clip;
+  color: #fff;
+  background: #25332e;
+}
+.slides,
+.slide {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+.slides {
+  z-index: -2;
+}
+.slide {
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.slide.is-current {
+  opacity: 1;
+}
+.slide[data-frame="0"] {
+  object-position: 50% 68%;
+}
+.slide[data-frame="1"] {
+  object-position: 50% 0%;
+}
+.slide[data-frame="2"] {
+  object-position: 50% 66%;
+}
+.photo-cover::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(5 15 11 / 72%),
+    transparent 27%,
+    transparent 44%,
+    rgb(5 15 11 / 54%) 68%,
+    rgb(5 15 11 / 82%)
+  );
+  pointer-events: none;
+}
+.cover-header {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 34px 4vw;
+}
+.cover-header a {
+  text-decoration: none;
+}
+.cover-header nav {
+  display: flex;
+  gap: 38px;
+}
+.cover-header nav a {
+  padding-block: 12px;
+}
+.cover-header a:hover {
+  text-decoration: underline;
+}
+.cover-copy {
+  position: absolute;
+  bottom: 7.8%;
+  left: 4vw;
+  right: 4vw;
+  pointer-events: none;
+}
+.cover-copy h1 {
+  margin: 0 0 18px;
+}
+.cover-copy p {
+  margin: 0;
+}
+.mobile-break {
+  display: none;
+}
+.cover-controls {
+  position: absolute;
+  right: 4vw;
+  bottom: 7.6%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.cover-controls[hidden] {
+  display: none;
+}
+.frame-count {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-right: 16px;
+}
+.count-rule {
+  width: 45px;
+  height: 1px;
+  background: rgb(255 255 255 / 65%);
+}
+.cover-controls button {
+  border: 1px solid rgb(255 255 255 / 55%);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.cover-controls button:hover {
+  background: rgb(255 255 255 / 16%);
+}
+.cover-controls button[data-pause] {
+  border-color: transparent;
+  margin-left: 4px;
+}
+.cover-controls svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+@media (max-width: 900px) {
+  .cover-header {
+    padding: 24px 6vw;
+    gap: 18px;
+  }
+  .cover-header nav {
+    gap: 22px;
+  }
+  .cover-copy {
+    left: 6vw;
+    right: 6vw;
+    bottom: 17%;
+  }
+  .cover-copy h1 {
+    margin-bottom: 20px;
+  }
+  .cover-copy p {
+  }
+  .cover-controls {
+    left: 6vw;
+    right: 6vw;
+    bottom: 5.2%;
+    justify-content: flex-end;
+  }
+  .frame-count {
+    margin-right: auto;
+  }
+  .count-rule {
+    width: 36px;
+  }
+  .slide[data-frame="0"] {
+    object-position: 50% 50%;
+  }
+  .slide[data-frame="1"] {
+    object-position: 51% 55%;
+  }
+  .slide[data-frame="2"] {
+    object-position: 49% 50%;
+  }
+  .mobile-break {
+    display: inline;
+  }
+}
+@media (max-width: 450px) {
+  .cover-header nav {
+    gap: 17px;
+  }
+  .cover-header nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+@media (max-height: 600px) and (min-width: 901px) {
+  .cover-copy {
+    bottom: 9%;
+  }
+  .cover-copy h1 {
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
+/* Reserve the roof apex when a portrait original fills a wide screen. */
+@media (min-width: 901px) and (min-aspect-ratio: 17/10) {
+  .slide[data-frame="0"] {
+    object-position: 50% 65%;
+  }
+  .slide[data-frame="2"] {
+    object-position: 50% 61%;
+  }
+}
+.story-root .photo-cover {
+  scroll-margin-top: 0;
+  min-height: 480px;
+}
+.cover-copy h1 {
+  margin: 0 0 14px;
+}
+.cover-copy {
+  bottom: 10%;
+  z-index: 4;
+}
+.cover-copy p {
+}
+.cover-controls {
+  z-index: 4;
+  bottom: 9%;
+}
+.photo-cover::after {
+  background: linear-gradient(
+    180deg,
+    rgb(5 15 11 / 66%),
+    transparent 30%,
+    transparent 43%,
+    rgb(5 15 11 / 55%) 72%,
+    rgb(5 15 11 / 82%)
+  );
+}
+.opening {
+  position: relative;
+  isolation: isolate;
+  background: var(--linen);
+}
+.opening.motion-opening > .photo-cover {
+  position: sticky;
+  top: 0;
+}
+.opening .atlas-proof {
+  position: relative;
+  z-index: 2;
+  background: var(--linen);
+}
+.cover-transfer {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+  pointer-events: none;
+  overflow: clip;
+  visibility: hidden;
+  background: var(--forest);
+}
+.cover-transfer img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  max-width: none;
+  transform-origin: 0 0;
+}
+.cover-transfer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgb(5 15 11 / 66%),
+    transparent 30%,
+    transparent 43%,
+    rgb(5 15 11 / 55%) 72%,
+    rgb(5 15 11 / 82%)
+  );
+  opacity: var(--shade, 1);
+}
+.opening[data-transfer="active"] .photo-cover .slides,
+.opening[data-transfer="active"] #gallery-open img {
+  visibility: hidden;
+}
+.opening[data-transfer="active"] .cover-transfer {
+  visibility: visible;
+}
+.opening[data-transfer="active"] #atlas #gallery-open {
+  background: transparent;
+}
+.opening[data-transfer="complete"] .photo-cover {
+  opacity: 0;
+  pointer-events: none;
+}
+.opening[data-transfer="active"] .photo-cover::after {
+  opacity: 0;
+}
+.opening[data-transfer="active"] .cover-copy {
+  position: fixed;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 10%;
+  z-index: 13;
+  opacity: var(--cover-copy, 1);
+}
+@media (max-width: 900px) {
+  .cover-copy h1 {
+  }
+  .cover-copy,
+  .opening[data-transfer="active"] .cover-copy {
+    bottom: 19%;
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+  .cover-copy p {
+  }
+  .cover-controls {
+    bottom: 6%;
+    left: var(--gutter);
+    right: var(--gutter);
+  }
+}
+@media (max-height: 599px) {
+  .story-root .photo-cover {
+    min-height: 100svh;
+  }
+  .cover-copy {
+    bottom: 22%;
+  }
+  .cover-controls {
+    bottom: 3%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    transition: none;
+  }
+}
+
+.opening[data-transfer="active"] .photo-cover {
+  z-index: 14;
+  background: transparent;
+  pointer-events: none;
+}
+.opening[data-transfer="active"] .cover-controls {
+  opacity: var(--cover-copy, 1);
+}
+.opening[data-transfer="preparing"][data-transfer-direction="forward"]
+  .photo-cover {
+  z-index: 14;
+}
+.opening[data-transfer="preparing"][data-transfer-direction="reverse"]
+  .photo-cover {
+  opacity: 0;
+  pointer-events: none;
+}
+.opening[data-transfer="active"]
+  #atlas
+  :is(
+    #gallery-title,
+    .atlas-navigation,
+    .atlas-folio,
+    .gallery-controls,
+    .gallery-active figcaption,
+    .gallery-index
+  ) {
+  opacity: var(--atlas-copy, 0);
+}
+@media (max-width: 900px) {
+  .opening[data-transfer="active"] #atlas #gallery-title,
+  .opening[data-transfer="active"] #atlas .atlas-folio {
+    opacity: var(--atlas-title, 0);
+    transform: translateY(var(--atlas-title-y, 0px));
+  }
+  .opening[data-transfer="active"] #atlas .atlas-folio {
+    transform: translateY(var(--atlas-folio-y, 0px));
+  }
+}

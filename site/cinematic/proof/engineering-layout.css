@@ -1,0 +1,422 @@
+.engineering-proof.final-website {
+  --paper: #eae5db;
+  --ink: #30312e;
+  --engineering: #1d2925;
+  color: #30312e;
+  background: #eae5db;
+}
+.engineering-proof.final-website #engineering .structural-stage {
+  background: #eae5db;
+}
+.engineering-proof.final-website #engineering .engineering-surface {
+  background: #1d2925 !important;
+}
+.engineering-proof.final-website #engineering .engineering-surface::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #eae5db;
+  clip-path: inset(0 0 var(--doc-surface, 100%) 0);
+}
+.engineering-proof.final-website #engineering .engineering-layer {
+  color: var(--doc-stage-ink, #eae5db) !important;
+}
+.engineering-proof.final-website #engineering .paper-base {
+  pointer-events: none;
+}
+.engineering-proof.final-website
+  #engineering
+  :is(
+    .stage-head,
+    .sheet-frame,
+    .sheet-detail,
+    .sheet-heading,
+    .sheet-footer,
+    .sheet-register,
+    .sheet-field-label,
+    .unified-heading,
+    .unified-axis,
+    .unified-footer,
+    .field-mark,
+    .engineering-note
+  ) {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+.engineering-proof.final-website #engineering .study-heading {
+  position: absolute;
+  opacity: var(--study-line-entry, 1);
+  z-index: 5;
+  top: 7.5%;
+  left: var(--gutter);
+  margin: 0;
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .study-heading-dark {
+  color: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .study-heading-light {
+  display: none;
+}
+.engineering-proof.final-website.motion-ready
+  #engineering
+  .study-heading-light {
+  display: block;
+  opacity: 1;
+  color: #30312e;
+  z-index: 0;
+}
+.engineering-proof.final-website #engineering .study-kicker {
+  margin: 0 0 17px;
+}
+.engineering-proof.final-website #engineering .study-display {
+  margin: 0;
+}
+.engineering-proof.final-website
+  #engineering
+  .engineering-layer
+  > .geometry-frame {
+  opacity: var(--study-line-entry, 1);
+}
+.engineering-proof.final-website #engineering .line-visible {
+  stroke: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .line-hidden {
+  stroke: var(--doc-stage-ink, #eae5db);
+  opacity: 0.22;
+}
+.engineering-proof.final-website #engineering .projection-motion {
+  color: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .unified-main path {
+  stroke: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .unified-main .primary {
+  stroke: var(--doc-stage-ink, #f8f7f2);
+}
+.engineering-proof.final-website #engineering .unified-aux path {
+  stroke: var(--doc-stage-muted, #a6b0a8);
+}
+.engineering-proof.final-website #engineering .unified-aux text {
+  fill: #b8c0b9;
+}
+.engineering-proof.final-website
+  #engineering
+  .unified-aux
+  :is(.label, .small, .group-number) {
+  visibility: hidden;
+}
+.engineering-proof.final-website #engineering .annotation {
+  color: #eae5db;
+}
+.engineering-proof.final-website #engineering .annotation .mono {
+}
+.engineering-proof.final-website #engineering .annotation strong {
+  color: #bdc5bd;
+}
+.engineering-proof.final-website #engineering .annotation-leaders {
+  color: #a9b2aa;
+}
+.engineering-proof.final-website #engineering .structural-focus {
+  min-height: 44px;
+}
+.engineering-proof.final-website #engineering .structural-focus.is-highlighted {
+  color: #f8f7f2;
+}
+.engineering-proof.final-website
+  #engineering
+  .structural-focus.is-highlighted
+  .mono {
+  text-decoration-color: #b98567;
+  text-decoration-thickness: 2px;
+}
+.engineering-proof.final-website #engineering .study-note {
+  position: absolute;
+  z-index: 7;
+  bottom: 6.25%;
+  left: var(--gutter);
+  color: #bdc5bd;
+  opacity: calc(var(--study-note-entry, 1) * var(--doc-note, 1));
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .study-controls {
+  position: absolute;
+  z-index: 8;
+  pointer-events: auto;
+  right: var(--gutter);
+  bottom: 4.6%;
+  display: flex;
+  gap: 22px;
+  align-items: center;
+}
+.engineering-proof.final-website.motion-ready[data-study-entry="transition"]
+  #engineering
+  .study-controls {
+  visibility: hidden;
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .study-controls a {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  text-decoration: none;
+  color: #eae5db;
+}
+.engineering-proof.final-website
+  #engineering
+  .study-controls
+  a[aria-current="true"] {
+  box-shadow: inset 0 -1px #a16b51;
+}
+.engineering-proof.final-website #engineering .study-controls a:focus-visible {
+  outline: 2px solid #eae5db;
+  outline-offset: 4px;
+}
+.engineering-proof.final-website #engineering .unified-sheet {
+  color: var(--doc-stage-ink, #eae5db);
+}
+.engineering-proof.final-website #engineering .unified-legend {
+  color: #bdc5bd;
+}
+.engineering-proof.final-website:not(.scene-capable) #engineering .paper-base {
+  display: none;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .structural-stage {
+  background: #1d2925;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .study-heading-light {
+  display: none;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-sheet {
+  background: #1d2925;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-sheet::after {
+  display: none;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-heading {
+  visibility: visible !important;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-heading
+  h2 {
+  color: #eae5db;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-heading
+  .mono {
+  display: none;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .unified-heading
+  > p:last-child {
+  color: #bdc5bd;
+}
+.engineering-proof.final-website:not(.scene-capable)
+  #engineering
+  .study-controls {
+  display: none;
+}
+.engineering-proof.final-website[data-transition="dissolve"]
+  #engineering
+  .engineering-layer {
+  clip-path: none !important;
+  opacity: var(--study-dark-entry, 1);
+}
+@media (max-width: 1000px) {
+  .engineering-proof.final-website #engineering .study-heading {
+    top: 7.5%;
+    left: var(--gutter);
+  }
+  .engineering-proof.final-website #engineering .study-display {
+  }
+  .engineering-proof.final-website #engineering .annotation-layer {
+    top: 77%;
+    left: 7%;
+    right: 7%;
+  }
+  .engineering-proof.final-website #engineering .annotation .mono {
+  }
+  .engineering-proof.final-website #engineering .study-controls {
+    bottom: 2%;
+    right: var(--gutter);
+    gap: 17px;
+  }
+  .engineering-proof.final-website #engineering .study-note {
+    bottom: 3.75%;
+    left: var(--gutter);
+    max-width: 40%;
+  }
+}
+@media (max-width: 600px) {
+  .engineering-proof.final-website #engineering .study-heading {
+    top: 7%;
+    left: var(--gutter);
+  }
+  .engineering-proof.final-website #engineering .study-kicker {
+    margin-bottom: 15px;
+  }
+  .engineering-proof.final-website #engineering .study-display {
+  }
+  .engineering-proof.final-website #engineering .study-note {
+    bottom: 1.4%;
+    max-width: 90%;
+  }
+  .engineering-proof.final-website #engineering .study-controls {
+    bottom: 3.8%;
+    left: var(--gutter);
+    right: var(--gutter);
+    justify-content: space-between;
+  }
+  .engineering-proof.final-website #engineering .study-controls a {
+  }
+  .engineering-proof.final-website #engineering .annotation-layer {
+    top: 77%;
+  }
+  .engineering-proof.final-website #engineering .annotation .mono {
+  }
+  .engineering-proof.final-website #engineering .structural-focus {
+    min-height: 33px;
+  }
+  .engineering-proof.final-website #engineering .unified-legend {
+    top: 70%;
+    max-width: 290px;
+  }
+  .engineering-proof.final-website #engineering .unified-main {
+    top: 30%;
+    height: 38%;
+  }
+  .engineering-proof.final-website
+    #engineering
+    .engineering-layer
+    > .geometry-frame {
+    top: 36%;
+    left: 4%;
+    width: 92%;
+    height: 29%;
+  }
+}
+@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+  .engineering-proof.final-website #engineering .structural-track {
+    height: auto !important;
+  }
+  .engineering-proof.final-website #engineering .study-heading-light {
+    display: none;
+  }
+  .engineering-proof.final-website #engineering .engineering-layer {
+    position: relative;
+    opacity: 1 !important;
+    clip-path: none !important;
+  }
+  .engineering-proof.final-website
+    #engineering
+    .engineering-layer
+    > .geometry-frame {
+    opacity: 1;
+  }
+  .engineering-proof.final-website #engineering .unified-sheet {
+    background: #1d2925;
+  }
+}
+
+.engineering-proof.final-website #engineering .study-heading-dark {
+  color: var(--doc-stage-ink, #eae5db);
+  opacity: calc(var(--study-line-entry, 1) * var(--doc-heading, 1));
+}
+.engineering-proof.final-website
+  #engineering
+  :is(.study-note, .unified-legend) {
+  color: var(--doc-stage-muted, #bdc5bd);
+}
+.engineering-proof.final-website #engineering .study-controls {
+  opacity: var(--doc-heading, 1);
+}
+.engineering-proof.final-website #engineering .unified-aux text {
+  fill: var(--doc-stage-muted, #b8c0b9);
+}
+.engineering-proof.final-website #engineering .document-handoff-label {
+  position: absolute;
+  z-index: 8;
+  top: 13%;
+  left: var(--gutter);
+  right: var(--gutter);
+  color: #fff;
+  mix-blend-mode: difference;
+  opacity: var(--doc-label, 0);
+  margin: 0;
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .engineering-proof.final-website #engineering .document-handoff-label {
+    top: 13%;
+  }
+  .engineering-proof.final-website #engineering .study-display {
+  }
+}
+
+@media (max-width: 600px) {
+  .engineering-proof.final-website #engineering .paper-base > .geometry-frame {
+    top: 36%;
+    left: 4%;
+    width: 92%;
+    height: 29%;
+  }
+}
+.engineering-proof.final-website #engineering .paper-base .line-visible,
+.engineering-proof.final-website #engineering .paper-base .line-hidden {
+  stroke: var(--graphite);
+}
+
+.engineering-proof.final-website
+  #engineering
+  .unified-main
+  > svg:not(.document-handoff-datum) {
+  position: relative;
+  z-index: 1;
+  opacity: var(--doc-lines, 1);
+}
+.engineering-proof.final-website #engineering .unified-aux svg {
+  opacity: var(--doc-secondary, 1);
+}
+.engineering-proof.final-website[data-documentation-active="true"]
+  #engineering
+  .unified-legend {
+  opacity: var(--doc-secondary, 1) !important;
+}
+.engineering-proof.final-website #engineering .document-handoff-folio {
+  position: absolute;
+  z-index: 8;
+  top: 7.5%;
+  left: var(--gutter);
+  color: var(--graphite);
+  opacity: var(--doc-folio, 0);
+  color: #fff;
+  mix-blend-mode: difference;
+  margin: 0;
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .document-handoff-datum {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  mix-blend-mode: difference;
+  opacity: var(--doc-datum, 0);
+  pointer-events: none;
+}
+@media (max-width: 600px) {
+  .engineering-proof.final-website #engineering .document-handoff-folio {
+    top: 7%;
+  }
+}

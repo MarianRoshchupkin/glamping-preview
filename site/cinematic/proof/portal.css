@@ -1,0 +1,37 @@
+.engineering-proof.final-website
+  #engineering
+  .atlas-handoff-image.blueprint-portal {
+  position: absolute;
+  z-index: 7;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.engineering-proof.final-website #engineering .blueprint-portal img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 50%;
+}
+.engineering-proof.final-website
+  #engineering
+  :is(
+    .document-handoff-label,
+    .document-handoff-folio,
+    .document-handoff-datum
+  ) {
+  display: none;
+}
+.engineering-proof.final-website[data-documentation-active="true"]
+  #engineering
+  :is(.sheet-frame, .sheet-register, .sheet-footer, .unified-sheet, .projection-motion, .engineering-layer > .geometry-frame) {
+  opacity: var(--doc-lines, 1) !important;
+}
+@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+  .engineering-proof.final-website #engineering .blueprint-portal {
+    display: none;
+  }
+}
