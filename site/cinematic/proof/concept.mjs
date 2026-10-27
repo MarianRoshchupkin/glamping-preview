@@ -173,10 +173,10 @@ function mountFilm() {
           );
         const accents = [
           [titles[0], 0, 2.1],
-          [titles[1], 2.4, 5.5],
-          [titles[2], 7.6, 10.7],
-          [titles[3], 10.8, 13.7],
-          [titles[4], 13.8, 15],
+          [titles[1], 2.7, 6.6],
+          [titles[2], 7, 10.8],
+          [titles[3], 11.5, 16.1],
+          [titles[4], 18.5, 22.5],
         ];
         for (const [title, start, end] of accents) {
           if (start > 0)
@@ -197,13 +197,13 @@ function mountFilm() {
               },
               start,
             );
-          if (end < 15)
+          if (end < 22.5)
             composition.to(title, { opacity: 0, duration: 0.35 }, end - 0.35);
         }
         const reveals = [
-          [root.querySelector(".reveal-amba"), 2.8, 5.4, "64%"],
-          [root.querySelector(".reveal-khamoran"), 8, 10.6, "54%"],
-          [root.querySelector(".reveal-dyo"), 11, 13.6, "64%"],
+          [root.querySelector(".reveal-amba"), 4.2, 7.5, "64%"],
+          [root.querySelector(".reveal-khamoran"), 8, 11.1, "54%"],
+          [root.querySelector(".reveal-dyo"), 11.9, 15, "64%"],
         ];
         const ready = new WeakSet(),
           cues = new Map();
@@ -283,22 +283,22 @@ function mountFilm() {
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 0.9, duration: 1 },
-            2.4,
+            3,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 1 },
-            5.5,
+            10.9,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 0.88, duration: 0.8 },
-            10.8,
+            15.2,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 0.8 },
-            13.8,
+            18.1,
           );
         const render = (time) => {
           if (root.dataset.ready !== "true") return;
