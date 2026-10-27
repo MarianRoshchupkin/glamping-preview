@@ -239,8 +239,8 @@ function mountFilm() {
             0.34,
           )
           .to(register, { opacity: 0, duration: 0.18 }, 0.82)
-          .to(drawing, { opacity: 1, duration: 0.18 }, 0.68)
-          .to(frame, { opacity: 0, duration: 0.08 }, 0.92);
+          // Hold the opaque sheet until the real drawing reaches the same viewport position.
+          .to(drawing, { opacity: 1, duration: 0.18 }, 0.68);
         const update = (self) => {
           const previous = bridge;
           bridge = self.progress;
