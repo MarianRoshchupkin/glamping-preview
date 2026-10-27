@@ -309,18 +309,13 @@
   opacity: 0;
 }
 .opening[data-transfer="active"] .cover-copy {
-  position: fixed;
-  left: var(--gutter);
-  right: var(--gutter);
-  bottom: 10%;
   z-index: 13;
   opacity: var(--cover-copy, 1);
 }
 @media (max-width: 900px) {
   .cover-copy h1 {
   }
-  .cover-copy,
-  .opening[data-transfer="active"] .cover-copy {
+  .cover-copy {
     bottom: 19%;
     left: var(--gutter);
     right: var(--gutter);

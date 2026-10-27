@@ -80,9 +80,7 @@
   color: #fff;
 }
 .film-frame:focus-within .film-controls,
-.film-controls:hover,
-.concept-film[data-controls="true"] .film-controls,
-.concept-film[data-play-rejected="true"] .film-controls {
+.concept-film[data-controls="true"] .film-controls {
   opacity: 1;
   pointer-events: auto;
 }

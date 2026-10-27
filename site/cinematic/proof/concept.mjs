@@ -4,39 +4,20 @@ import { createOwnership } from "/glamping-preview/cinematic/legacy/controllers/
 gsap.registerPlugin(ScrollTrigger);
 function mountFilm() {
   const owner = createOwnership(),
-    root = document.querySelector(".concept-film"),
+    root = document.querySelector(".unified-hero"),
     frame = root.querySelector(".film-frame"),
     video = root.querySelector("video"),
-    controls = root.querySelector(".film-controls"),
     toggle = root.querySelector("#film-toggle"),
     status = root.querySelector("#film-status"),
     engineering = document.querySelector("#engineering");
   const reduced = matchMedia("(prefers-reduced-motion:reduce)"),
     tall = matchMedia("(min-height:600px)");
-  const starts = [0, 5.8, 9.2, 12, 14.8, 18];
+  let composition;
   let visible = false,
     paused = false,
     failed = false,
-    ticking = false,
-    bridge = 0,
-    clock,
-    timer;
+    bridge = 0;
   const eligible = () => !reduced.matches && tall.matches;
-  const setTicking = (value) => {
-    if (ticking === value) return;
-    ticking = value;
-    if (value) gsap.ticker.add(render);
-    else gsap.ticker.remove(render);
-  };
-  function render() {
-    clock?.time(video.currentTime, false);
-    root.dataset.shot = String(
-      Math.max(
-        0,
-        starts.findLastIndex((start) => video.currentTime >= start),
-      ),
-    );
-  }
   function sync() {
     const play =
       owner.alive &&
@@ -45,9 +26,10 @@ function mountFilm() {
       !failed &&
       eligible() &&
       !document.hidden &&
-      bridge < 0.12 &&
+      bridge <= 0 &&
       !video.ended;
-    controls.hidden = failed || !eligible();
+    toggle.hidden = !owner.alive || failed || !eligible() || bridge > 0;
+    toggle.inert = toggle.hidden;
     toggle.setAttribute("aria-pressed", String(paused));
     toggle.textContent = paused ? "Воспроизвести фильм" : "Пауза фильма";
     if (play) {
@@ -62,49 +44,46 @@ function mountFilm() {
           paused ||
           !eligible() ||
           document.hidden ||
-          bridge >= 0.12
+          bridge > 0
         )
           return;
         paused = true;
         root.dataset.playRejected = "true";
         toggle.setAttribute("aria-pressed", "true");
         toggle.textContent = "Воспроизвести фильм";
-        setTicking(false);
       });
     } else {
       video.pause();
-      setTicking(false);
     }
-    if (!eligible() || failed) root.dataset.ready = "false";
-  }
-  function showControls() {
-    root.dataset.controls = "true";
-    clearTimeout(timer);
-    timer = setTimeout(() => {
-      delete root.dataset.controls;
-    }, 2200);
+    if (!eligible() || failed) {
+      root.dataset.ready = "false";
+      composition?.time(0);
+    }
   }
   video.muted = true;
   video.loop = false;
-  owner.listen(toggle, "click", () => {
+  function toggleMotion() {
+    if (!eligible() || failed || bridge > 0) return;
     paused = !paused;
-    if (!paused && video.ended) video.currentTime = 0;
+    if (!paused && video.ended) {
+      video.currentTime = 0;
+      composition?.time(0);
+    }
     sync();
+  }
+  owner.listen(toggle, "click", toggleMotion);
+  owner.listen(frame, "click", (event) => {
+    if (event.target.closest("a,button,input,summary")) return;
+    if (getSelection()?.toString()) return;
+    toggleMotion();
   });
-  owner.listen(frame, "pointerenter", showControls);
-  owner.listen(frame, "pointermove", showControls);
-  owner.listen(frame, "pointerdown", showControls);
-  owner.listen(frame, "focusin", showControls);
   owner.listen(video, "playing", () => {
     root.dataset.ready = "true";
     delete root.dataset.playRejected;
-    setTicking(true);
   });
-  owner.listen(video, "pause", () => setTicking(false));
   owner.listen(video, "ended", () => {
     paused = true;
     sync();
-    render();
   });
   owner.listen(video, "error", () => {
     failed = true;
@@ -127,14 +106,6 @@ function mountFilm() {
   media.add(
     "(prefers-reduced-motion:no-preference) and (min-height:600px)",
     () => {
-      const final = new Image();
-      final.className = "film-final";
-      final.alt = "";
-      final.src =
-        "/glamping-preview/cinematic/media/" +
-        (innerWidth <= 900
-          ? "concept-final-mobile.webp"
-          : "concept-final.webp");
       const field = document.createElement("div");
       field.className = "film-field";
       const drawing = engineering
@@ -142,9 +113,7 @@ function mountFilm() {
         .cloneNode(true);
       drawing.setAttribute("class", "film-drawing");
       drawing.setAttribute("aria-hidden", "true");
-      const register = document.createElement("div");
-      register.className = "film-register";
-      for (const node of [field, drawing, register])
+      for (const node of [field, drawing])
         node.setAttribute("aria-hidden", "true");
       for (const node of drawing.querySelectorAll("[id]")) {
         const id = node.id;
@@ -161,10 +130,7 @@ function mountFilm() {
           }
         }
       }
-      frame.append(final, field, drawing, register);
-      let ready = false,
-        active = true,
-        trigger;
+      frame.append(field, drawing);
       const measure = () => {
         const source = engineering
           .querySelector(".paper-base .geometry-frame")
@@ -173,88 +139,146 @@ function mountFilm() {
           .querySelector(".structural-stage")
           .getBoundingClientRect();
         gsap.set(drawing, {
+          autoRound: false,
           left: source.left,
           top: source.top - stage.top,
           width: source.width,
           height: source.height,
         });
       };
+      let tick;
       const context = gsap.context(() => {
-        const words = root.querySelectorAll(".film-word");
-        gsap.set(words, { opacity: 0, yPercent: 25 });
-        clock = gsap.timeline({ paused: true }).to({}, { duration: 22 });
-        starts.forEach((start, index) => {
-          clock
-            .fromTo(
-              words[index],
-              { opacity: 0, yPercent: 25 },
-              { opacity: 1, yPercent: 0, duration: 0.45 },
-              start + 0.2,
-            )
-            .to(
-              words[index],
-              { opacity: 0, yPercent: -12, duration: 0.45 },
-              start + 1.7,
-            );
+        root.dataset.enhanced = "true";
+        const titles = [...root.querySelectorAll(".hero-accent")];
+        composition = gsap.timeline({
+          paused: true,
+          defaults: { ease: "power2.inOut" },
         });
-        gsap.fromTo(
-          frame,
-          { clipPath: "inset(12% 4%)" },
-          {
-            clipPath: "inset(0% 0%)",
-            ease: "none",
-            scrollTrigger: {
-              id: "phase2938-film-entry",
-              trigger: root,
-              start: "top bottom",
-              end: "top top",
-              scrub: true,
-            },
-          },
-        );
+        composition
+          .set(video, { opacity: 1 }, 0)
+          .to(
+            root.querySelector(".hero-house"),
+            { opacity: 0, duration: 0.9 },
+            1.9,
+          );
+        const accents = [
+          [titles[0], 0, 2.1],
+          [titles[1], 2.7, 6.6],
+          [titles[2], 7, 10.8],
+          [titles[3], 11.5, 16.1],
+          [titles[4], 18.5, 22.5],
+        ];
+        for (const [title, start, end] of accents) {
+          if (start > 0)
+            composition.fromTo(
+              title,
+              {
+                opacity: 0,
+                clipPath: "inset(0 0 100% 0)",
+                y: 14,
+                scale: 0.985,
+              },
+              {
+                opacity: 1,
+                clipPath: "inset(0 0 0% 0)",
+                y: 0,
+                scale: 1,
+                duration: 0.65,
+              },
+              start,
+            );
+          if (end < 22.5)
+            composition.to(title, { opacity: 0, duration: 0.35 }, end - 0.35);
+        }
+        const reveals = [
+          [root.querySelector(".reveal-amba"), 4.2, 6.1],
+          [root.querySelector(".reveal-roof"), 6, 7.7],
+          [root.querySelector(".reveal-khamoran"), 8, 11.1],
+          [root.querySelector(".reveal-dyo"), 11.9, 15],
+        ];
+        const ready = new WeakSet();
+        for (const [layer, start, end] of reveals) {
+          composition
+            .fromTo(
+              layer,
+              {
+                opacity: 0,
+                xPercent: matchMedia("(min-width:901px)").matches ? 3 : 0,
+              },
+              { opacity: 1, xPercent: 0, duration: 0.75 },
+              start,
+            )
+            .to(layer, { opacity: 0, duration: 0.5 }, end - 0.5);
+        }
+        composition
+          .to(
+            root.querySelector(".hero-shade"),
+            { opacity: 0.9, duration: 1 },
+            3,
+          )
+          .to(
+            root.querySelector(".hero-shade"),
+            { opacity: 1, duration: 1 },
+            10.9,
+          )
+          .to(
+            root.querySelector(".hero-shade"),
+            { opacity: 0.88, duration: 0.8 },
+            15.2,
+          )
+          .to(
+            root.querySelector(".hero-shade"),
+            { opacity: 1, duration: 0.8 },
+            18.1,
+          );
+        tick = () => {
+          if (root.dataset.ready !== "true") return;
+          const time = video.currentTime;
+          for (const [layer, start] of reveals) {
+            const img = layer.querySelector("img");
+            if (img.complete && img.naturalWidth) ready.add(img);
+            if (!img.getAttribute("src") && time >= start - 2) {
+              img.src =
+                matchMedia("(max-width:900px)").matches && img.dataset.mobileSrc
+                  ? img.dataset.mobileSrc
+                  : img.dataset.src;
+              img
+                .decode()
+                .then(() => {
+                  if (owner.alive) ready.add(img);
+                })
+                .catch(() => {});
+            }
+          }
+          composition.time(time);
+          for (const [layer] of reveals)
+            layer.style.visibility = ready.has(layer.querySelector("img"))
+              ? ""
+              : "hidden";
+        };
+        gsap.ticker.add(tick);
         const handoff = gsap
           .timeline({ paused: true, defaults: { ease: "none" } })
           .fromTo(
-            final,
-            { opacity: 0, scale: 1 },
-            { opacity: 1, scale: 1.045, duration: 0.22 },
+            root.querySelector(".unified-copy"),
+            { opacity: 1 },
+            { opacity: 0, duration: 0.22 },
             0,
           )
-          .fromTo(
-            drawing,
-            { opacity: 0, clipPath: "inset(0 100% 0 0)" },
-            { opacity: 0.75, clipPath: "inset(0 0% 0 0)", duration: 0.42 },
-            0.14,
-          )
-          .fromTo(
-            field,
-            { opacity: 1, clipPath: "inset(0 100% 0 0)" },
-            { clipPath: "inset(0 0% 0 0)", duration: 0.5 },
-            0.36,
-          )
-          .fromTo(
-            register,
-            { opacity: 0 },
-            { opacity: 0.45, duration: 0.24 },
-            0.34,
-          )
-          .to(register, { opacity: 0, duration: 0.18 }, 0.82)
-          // Hold the opaque sheet until the real drawing reaches the same viewport position.
-          .to(drawing, { opacity: 1, duration: 0.18 }, 0.68);
+          .fromTo(field, { opacity: 0 }, { opacity: 1, duration: 0.46 }, 0.08)
+          .fromTo(drawing, { opacity: 0 }, { opacity: 1, duration: 0.34 }, 0.48)
+          .set(drawing, { opacity: 1 }, 1);
         const update = (self) => {
           const previous = bridge;
           bridge = self.progress;
           root.dataset.bridge =
             bridge >= 1 ? "complete" : bridge > 0 ? "active" : "before";
           document.body.dataset.filmHandoff = String(bridge > 0 && bridge < 1);
+          if (previous <= 0 !== bridge <= 0) sync();
           handoff.progress(bridge);
-          controls.inert = bridge > 0;
-          // Final source still is optional; the poster/video continues coherently until it decodes.
-          if (!ready) gsap.set(final, { opacity: 0 });
-          if (previous < 0.12 !== bridge < 0.12) sync();
         };
         measure();
-        trigger = ScrollTrigger.create({
+        ScrollTrigger.create({
           id: "phase2938-film-xray",
           trigger: engineering,
           start: "top bottom",
@@ -275,21 +299,13 @@ function mountFilm() {
             document.body.dataset.filmImmersive = String(self.isActive);
           },
         });
-        final
-          .decode()
-          .then(() => {
-            if (owner.alive && active) {
-              ready = true;
-              update(trigger);
-            }
-          })
-          .catch(() => {});
       }, root);
       return () => {
-        active = false;
-        clock = undefined;
+        gsap.ticker.remove(tick);
         context.revert();
-        for (const node of [final, field, drawing, register]) node.remove();
+        composition = undefined;
+        delete root.dataset.enhanced;
+        for (const node of [field, drawing]) node.remove();
         bridge = 0;
         delete root.dataset.bridge;
         delete document.body.dataset.filmHandoff;
@@ -299,36 +315,39 @@ function mountFilm() {
     },
   );
   owner.cleanup(() => {
-    clearTimeout(timer);
-    controls.hidden = true;
-    setTicking(false);
+    toggle.hidden = true;
+    toggle.inert = false;
     observer.disconnect();
     media.revert();
     video.pause();
     video.removeAttribute("src");
     video.load();
     status.textContent = "";
-    for (const key of ["ready", "controls", "playRejected"])
-      delete root.dataset[key];
+    for (const key of ["ready", "playRejected"]) delete root.dataset[key];
   });
-  window.__phase2938Film = {
-    get diagnostics() {
-      return {
-        shot: root.dataset.shot,
-        playing: !video.paused,
-        paused,
-        source: video.getAttribute("src"),
-        time: video.currentTime,
-        bridge,
-        triggers: ScrollTrigger.getAll().map((t) => t.vars.id),
+  window.__phase2941Hero =
+    window.__phase2940Hero =
+    window.__phase2938Film =
+      {
+        get diagnostics() {
+          return {
+            playing: !video.paused,
+            paused,
+            source: video.getAttribute("src"),
+            time: video.currentTime,
+            bridge,
+            eligible: eligible(),
+            ready: root.dataset.ready,
+            compositionTime: composition?.time() ?? 0,
+            triggers: ScrollTrigger.getAll().map((t) => t.vars.id),
+          };
+        },
+        dispose: () => owner.dispose(),
+        remount() {
+          owner.dispose();
+          mountFilm();
+        },
       };
-    },
-    dispose: () => owner.dispose(),
-    remount() {
-      owner.dispose();
-      mountFilm();
-    },
-  };
   owner.listen(window, "pagehide", (event) => {
     if (!event.persisted) owner.dispose();
   });

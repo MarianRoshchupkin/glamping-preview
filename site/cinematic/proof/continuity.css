@@ -33,7 +33,6 @@
 .concept-film .film-frame .film-controls[hidden] {
   display: none !important;
 }
-.film-final,
 .film-field,
 .film-drawing,
 .film-register {
@@ -41,29 +40,32 @@
   pointer-events: none;
   opacity: 0;
 }
-.film-final {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
 .film-field {
   inset: 0;
   background: #f1efe7;
 }
 .film-drawing {
   overflow: visible;
-  color: #cdbcbc;
-  mix-blend-mode: difference;
+  color: #24332b;
 }
 .film-drawing path {
   stroke: currentColor;
   fill: none;
-  stroke-width: 0.7;
   vector-effect: non-scaling-stroke;
 }
+.film-drawing .dimension-lines {
+  stroke: #3a4245;
+  stroke-width: 0.6;
+  opacity: 0.55;
+}
+.film-drawing .line-visible {
+  stroke-width: 1;
+  opacity: 0.96;
+}
 .film-drawing .line-hidden {
-  opacity: 0.16;
+  stroke-width: 0.6;
+  stroke-dasharray: 3 4;
+  opacity: 0.22;
 }
 .film-register {
   width: auto;
@@ -77,12 +79,6 @@
   z-index: 12;
 }
 .concept-film[data-bridge="complete"] .film-frame {
-  visibility: hidden;
-}
-.concept-film[data-bridge="active"] .film-controls {
-  visibility: hidden;
-}
-.concept-film[data-bridge="active"] .film-titles {
   visibility: hidden;
 }
 .film-media {
@@ -105,8 +101,7 @@
   }
 }
 @media (prefers-reduced-motion: reduce), (max-height: 599px) {
-  .film-final,
-  .film-field,
+    .film-field,
   .film-drawing,
   .film-register {
     display: none;
