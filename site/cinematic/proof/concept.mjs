@@ -13,6 +13,8 @@ function mountFilm() {
   const reduced = matchMedia("(prefers-reduced-motion:reduce)"),
     tall = matchMedia("(min-height:600px)");
   let composition;
+  let decodedTime = 0,
+    frameCallbacks = 0;
   let visible = false,
     paused = false,
     failed = false,
@@ -146,7 +148,10 @@ function mountFilm() {
           height: source.height,
         });
       };
-      let tick;
+      let tick, frameCallback, seek, pictureChange;
+      let active = true;
+      const pictureBreakpoint = matchMedia("(max-width:900px)");
+      const imageErrors = [];
       const context = gsap.context(() => {
         root.dataset.enhanced = "true";
         const titles = [...root.querySelectorAll(".hero-accent")];
@@ -191,24 +196,49 @@ function mountFilm() {
             composition.to(title, { opacity: 0, duration: 0.35 }, end - 0.35);
         }
         const reveals = [
-          [root.querySelector(".reveal-amba"), 4.2, 6.1],
-          [root.querySelector(".reveal-roof"), 6, 7.7],
-          [root.querySelector(".reveal-khamoran"), 8, 11.1],
-          [root.querySelector(".reveal-dyo"), 11.9, 15],
+          [root.querySelector(".reveal-amba"), 4.2, 7.5, "64%"],
+          [root.querySelector(".reveal-khamoran"), 8, 11.1, "54%"],
+          [root.querySelector(".reveal-dyo"), 11.9, 15, "64%"],
         ];
-        const ready = new WeakSet();
-        for (const [layer, start, end] of reveals) {
+        const ready = new WeakSet(),
+          cues = new Map();
+        const visual = root.querySelector(".unified-visual");
+        for (const [layer, start, end, focal] of reveals) {
+          const img = layer.querySelector("img");
+          const fail = () => {
+            ready.delete(img);
+            cues.set(layer, false);
+            layer.style.visibility = "hidden";
+          };
+          img.addEventListener("error", fail);
+          imageErrors.push([img, fail]);
+          if (layer.querySelector("source"))
+            pictureChange = () => {
+              if (img.getAttribute("src"))
+                img.decode().catch(() => {
+                  if (active) fail();
+                });
+            };
           composition
+            .set(visual, { "--focus-x": focal }, start - 0.45)
+            .fromTo(
+              visual,
+              { "--prepare": 0 },
+              { "--prepare": 0.32, duration: 0.45 },
+              start - 0.45,
+            )
+            .to(visual, { "--prepare": 0, duration: 0.8 }, start)
             .fromTo(
               layer,
-              {
-                opacity: 0,
-                xPercent: matchMedia("(min-width:901px)").matches ? 3 : 0,
-              },
-              { opacity: 1, xPercent: 0, duration: 0.75 },
+              { "--reveal-edge": "120%" },
+              { "--reveal-edge": "-20%", duration: 0.9, ease: "sine.inOut" },
               start,
             )
-            .to(layer, { opacity: 0, duration: 0.5 }, end - 0.5);
+            .to(
+              layer,
+              { "--reveal-edge": "120%", duration: 0.75, ease: "sine.inOut" },
+              end - 0.75,
+            );
         }
         composition
           .to(
@@ -231,15 +261,23 @@ function mountFilm() {
             { opacity: 1, duration: 0.8 },
             18.1,
           );
-        tick = () => {
+        const render = (time) => {
           if (root.dataset.ready !== "true") return;
-          const time = video.currentTime;
           for (const [layer, start] of reveals) {
             const img = layer.querySelector("img");
             if (img.complete && img.naturalWidth) ready.add(img);
-            if (!img.getAttribute("src") && time >= start - 2) {
-              img.src =
-                matchMedia("(max-width:900px)").matches && img.dataset.mobileSrc
+            else if (img.complete && img.getAttribute("src")) {
+              ready.delete(img);
+              cues.set(layer, false);
+            }
+            const alternate = layer.querySelector("source");
+            if (alternate && time >= start - 3 && !alternate.srcset)
+              alternate.srcset = alternate.dataset.srcset;
+            if (!img.getAttribute("src") && time >= start - 3) {
+              img.src = alternate
+                ? img.dataset.src
+                : matchMedia("(max-width:900px)").matches &&
+                    img.dataset.mobileSrc
                   ? img.dataset.mobileSrc
                   : img.dataset.src;
               img
@@ -249,14 +287,30 @@ function mountFilm() {
                 })
                 .catch(() => {});
             }
+            if (time < start) cues.delete(layer);
+            // Missed decoding skips this cue instead of exposing a half-revealed house.
+            else if (!cues.has(layer)) cues.set(layer, ready.has(img));
           }
           composition.time(time);
           for (const [layer] of reveals)
-            layer.style.visibility = ready.has(layer.querySelector("img"))
-              ? ""
-              : "hidden";
+            layer.style.visibility = cues.get(layer) ? "" : "hidden";
         };
-        gsap.ticker.add(tick);
+        seek = () => {
+          cues.clear();
+          decodedTime = video.currentTime;
+          render(decodedTime);
+        };
+        video.addEventListener("seeked", seek);
+        tick = () => render(video.currentTime);
+        if ("requestVideoFrameCallback" in video) {
+          const present = (_, metadata) => {
+            decodedTime = metadata.mediaTime;
+            frameCallbacks++;
+            render(decodedTime);
+            frameCallback = video.requestVideoFrameCallback(present);
+          };
+          frameCallback = video.requestVideoFrameCallback(present);
+        } else gsap.ticker.add(tick);
         const handoff = gsap
           .timeline({ paused: true, defaults: { ease: "none" } })
           .fromTo(
@@ -300,8 +354,20 @@ function mountFilm() {
           },
         });
       }, root);
+      pictureBreakpoint.addEventListener("change", pictureChange);
+      if (video.readyState >= 2 && video.getAttribute("src") && !failed) {
+        root.dataset.ready = "true";
+        seek();
+      }
       return () => {
+        active = false;
+        pictureBreakpoint.removeEventListener("change", pictureChange);
         gsap.ticker.remove(tick);
+        if (frameCallback !== undefined)
+          video.cancelVideoFrameCallback(frameCallback);
+        video.removeEventListener("seeked", seek);
+        for (const [img, fail] of imageErrors)
+          img.removeEventListener("error", fail);
         context.revert();
         composition = undefined;
         delete root.dataset.enhanced;
@@ -325,7 +391,8 @@ function mountFilm() {
     status.textContent = "";
     for (const key of ["ready", "playRejected"]) delete root.dataset[key];
   });
-  window.__phase2941Hero =
+  window.__phase2942Hero =
+    window.__phase2941Hero =
     window.__phase2940Hero =
     window.__phase2938Film =
       {
@@ -339,6 +406,12 @@ function mountFilm() {
             eligible: eligible(),
             ready: root.dataset.ready,
             compositionTime: composition?.time() ?? 0,
+            decodedTime,
+            frameCallbacks,
+            frameSync:
+              "requestVideoFrameCallback" in video
+                ? "decoded-frame"
+                : "ticker-fallback",
             triggers: ScrollTrigger.getAll().map((t) => t.vars.id),
           };
         },
