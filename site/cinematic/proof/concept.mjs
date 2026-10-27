@@ -168,10 +168,10 @@ function mountFilm() {
           );
         const accents = [
           [titles[0], 0, 2.1],
-          [titles[1], 2.7, 6.6],
-          [titles[2], 7, 10.8],
-          [titles[3], 11.5, 16.1],
-          [titles[4], 18.5, 22.5],
+          [titles[1], 2.4, 5.5],
+          [titles[2], 7.6, 10.7],
+          [titles[3], 10.8, 13.7],
+          [titles[4], 13.8, 15],
         ];
         for (const [title, start, end] of accents) {
           if (start > 0)
@@ -192,13 +192,13 @@ function mountFilm() {
               },
               start,
             );
-          if (end < 22.5)
+          if (end < 15)
             composition.to(title, { opacity: 0, duration: 0.35 }, end - 0.35);
         }
         const reveals = [
-          [root.querySelector(".reveal-amba"), 4.2, 7.5, "64%"],
-          [root.querySelector(".reveal-khamoran"), 8, 11.1, "54%"],
-          [root.querySelector(".reveal-dyo"), 11.9, 15, "64%"],
+          [root.querySelector(".reveal-amba"), 2.8, 5.4, "64%"],
+          [root.querySelector(".reveal-khamoran"), 8, 10.6, "54%"],
+          [root.querySelector(".reveal-dyo"), 11, 13.6, "64%"],
         ];
         const ready = new WeakSet(),
           cues = new Map();
@@ -244,22 +244,22 @@ function mountFilm() {
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 0.9, duration: 1 },
-            3,
+            2.4,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 1 },
-            10.9,
+            5.5,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 0.88, duration: 0.8 },
-            15.2,
+            10.8,
           )
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 0.8 },
-            18.1,
+            13.8,
           );
         const render = (time) => {
           if (root.dataset.ready !== "true") return;
@@ -319,8 +319,8 @@ function mountFilm() {
             { opacity: 0, duration: 0.22 },
             0,
           )
-          .fromTo(field, { opacity: 0 }, { opacity: 1, duration: 0.46 }, 0.08)
-          .fromTo(drawing, { opacity: 0 }, { opacity: 1, duration: 0.34 }, 0.48)
+          .fromTo(field, { opacity: 0 }, { opacity: 1, duration: 0.34 }, 0.44)
+          .fromTo(drawing, { opacity: 0 }, { opacity: 1, duration: 0.29 }, 0.61)
           .set(drawing, { opacity: 1 }, 1);
         const update = (self) => {
           const previous = bridge;
@@ -391,7 +391,8 @@ function mountFilm() {
     status.textContent = "";
     for (const key of ["ready", "playRejected"]) delete root.dataset[key];
   });
-  window.__phase2942Hero =
+  window.__phase2943Hero =
+    window.__phase2942Hero =
     window.__phase2941Hero =
     window.__phase2940Hero =
     window.__phase2938Film =

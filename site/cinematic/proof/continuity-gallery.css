@@ -3,7 +3,12 @@
   background: transparent;
 }
 .engineering-proof.final-website.motion-ready #engineering .structural-track {
-  height: 560svh;
+  height: 443.45svh;
+}
+@media (max-width: 600px) {
+  .engineering-proof.final-website.motion-ready #engineering .structural-track {
+    height: 441.45svh;
+  }
 }
 .engineering-proof.final-website.motion-ready
   #engineering

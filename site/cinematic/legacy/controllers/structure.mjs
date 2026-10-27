@@ -11,6 +11,7 @@ import {
   smooth,
   resolveSpread,
   circleAt,
+  structureProgressAt,
 } from "./motion-math.mjs";
 import { createProjection } from "../geometry/projection.mjs";
 import { addLineHierarchy } from "./line-hierarchy.mjs";
@@ -224,7 +225,8 @@ export function mountStructure(root, owner) {
   function updateLeaders() {
     callouts.update(groupOffsets);
   }
-  function render(progress) {
+  function render(scrollProgress) {
+    const progress = structureProgressAt(scrollProgress, innerWidth <= 600);
     if (current.progress >= 0.999 && progress < 0.999) measure();
     const structural = Math.min(0.64, (progress * 0.64) / 0.52);
     const base = stateAt(structural);

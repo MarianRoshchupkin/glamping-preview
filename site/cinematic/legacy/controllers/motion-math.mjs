@@ -167,3 +167,22 @@ export const registrationInkAt = (paper) =>
   paper < 0.1666362259
     ? [255, 255, 255]
     : [38, 61, 71].map((value) => value * smooth(range(paper, 0.6, 1)));
+
+// Remove only the assembled prelude; all later poses retain their original scroll distance.
+export function structureProgressAt(scrollProgress, mobile = false) {
+  const entry = mobile ? 0.16 : 0.18,
+    distance = clamp(scrollProgress) * (entry + 4.6 * (1 - 0.2925));
+  return distance < entry
+    ? (distance / entry) * 0.2925
+    : 0.2925 + (distance - entry) / 4.6;
+}
+export function structureScrollAt(progress, mobile = false) {
+  const entry = mobile ? 0.16 : 0.18,
+    logical = clamp(progress);
+  return (
+    (logical < 0.2925
+      ? (logical / 0.2925) * entry
+      : entry + (logical - 0.2925) * 4.6) /
+    (entry + 4.6 * (1 - 0.2925))
+  );
+}

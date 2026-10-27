@@ -1,5 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { structureScrollAt } from "/glamping-preview/cinematic/legacy/controllers/motion-math.mjs";
 import { mountStructure } from "/glamping-preview/cinematic/legacy/controllers/structure.mjs";
 import { createOwnership } from "/glamping-preview/cinematic/legacy/controllers/ownership.mjs";
 const root = document.querySelector(".engineering-proof");
@@ -294,7 +295,8 @@ if (root) {
     window.scrollTo({
       top:
         trigger.start +
-        (trigger.end - trigger.start) * Math.max(0, Math.min(1, progress)),
+        (trigger.end - trigger.start) *
+          structureScrollAt(progress, innerWidth <= 600),
       behavior: "instant",
     });
     ScrollTrigger.update();
