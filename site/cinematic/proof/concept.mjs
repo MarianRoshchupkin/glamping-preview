@@ -12,7 +12,8 @@ function mountFilm() {
     engineering = document.querySelector("#engineering");
   const reduced = matchMedia("(prefers-reduced-motion:reduce)"),
     tall = matchMedia("(min-height:600px)");
-  let composition;
+  let composition, preparePhotos;
+  let photosReady = false;
   let decodedTime = 0,
     frameCallbacks = 0;
   let visible = false,
@@ -21,9 +22,11 @@ function mountFilm() {
     bridge = 0;
   const eligible = () => !reduced.matches && tall.matches;
   function sync() {
+    if (owner.alive && visible && eligible() && !failed) preparePhotos?.();
     const play =
       owner.alive &&
       visible &&
+      photosReady &&
       !paused &&
       !failed &&
       eligible() &&
@@ -39,8 +42,10 @@ function mountFilm() {
         video.src = matchMedia("(max-width:900px)").matches
           ? video.dataset.mobileSrc
           : video.dataset.src;
-      video.play().catch(() => {
+      video.play().catch((error) => {
         if (
+          error.name === "AbortError" ||
+          !photosReady ||
           !owner.alive ||
           !visible ||
           paused ||
@@ -203,6 +208,40 @@ function mountFilm() {
         const ready = new WeakSet(),
           cues = new Map();
         const visual = root.querySelector(".unified-visual");
+        let preparing = false,
+          preparation = 0;
+        preparePhotos = (reset = false) => {
+          if (preparing && !reset) return;
+          preparing = true;
+          photosReady = false;
+          const token = ++preparation;
+          // A short film must not outrun the three architectural photographs.
+          Promise.all(
+            reveals.map(async ([layer]) => {
+              const img = layer.querySelector("img"),
+                alternate = layer.querySelector("source");
+              if (alternate && !alternate.srcset)
+                alternate.srcset = alternate.dataset.srcset;
+              if (!img.getAttribute("src"))
+                img.src = alternate
+                  ? img.dataset.src
+                  : matchMedia("(max-width:900px)").matches &&
+                      img.dataset.mobileSrc
+                    ? img.dataset.mobileSrc
+                    : img.dataset.src;
+              try {
+                await img.decode();
+                if (active && token === preparation) ready.add(img);
+              } catch {
+                if (active && token === preparation) cues.set(layer, false);
+              }
+            }),
+          ).then(() => {
+            if (!active || !owner.alive || token !== preparation) return;
+            photosReady = true;
+            sync();
+          });
+        };
         for (const [layer, start, end, focal] of reveals) {
           const img = layer.querySelector("img");
           const fail = () => {
@@ -214,10 +253,10 @@ function mountFilm() {
           imageErrors.push([img, fail]);
           if (layer.querySelector("source"))
             pictureChange = () => {
-              if (img.getAttribute("src"))
-                img.decode().catch(() => {
-                  if (active) fail();
-                });
+              if (img.getAttribute("src")) {
+                preparePhotos(true);
+                sync();
+              }
             };
           composition
             .set(visual, { "--focus-x": focal }, start - 0.45)
@@ -269,23 +308,6 @@ function mountFilm() {
             else if (img.complete && img.getAttribute("src")) {
               ready.delete(img);
               cues.set(layer, false);
-            }
-            const alternate = layer.querySelector("source");
-            if (alternate && time >= start - 3 && !alternate.srcset)
-              alternate.srcset = alternate.dataset.srcset;
-            if (!img.getAttribute("src") && time >= start - 3) {
-              img.src = alternate
-                ? img.dataset.src
-                : matchMedia("(max-width:900px)").matches &&
-                    img.dataset.mobileSrc
-                  ? img.dataset.mobileSrc
-                  : img.dataset.src;
-              img
-                .decode()
-                .then(() => {
-                  if (owner.alive) ready.add(img);
-                })
-                .catch(() => {});
             }
             if (time < start) cues.delete(layer);
             // Missed decoding skips this cue instead of exposing a half-revealed house.
@@ -370,6 +392,8 @@ function mountFilm() {
           img.removeEventListener("error", fail);
         context.revert();
         composition = undefined;
+        preparePhotos = undefined;
+        photosReady = false;
         delete root.dataset.enhanced;
         for (const node of [field, drawing]) node.remove();
         bridge = 0;
