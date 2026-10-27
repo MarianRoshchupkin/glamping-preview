@@ -1,0 +1,117 @@
+.cover-header.motion-header {
+  position: fixed;
+  width: 100%;
+  visibility: visible;
+  will-change: opacity, transform;
+}
+/* Controls belong to the main image; there is no second gallery strip. */
+#projects .gallery-image-controls {
+  position: absolute;
+  z-index: 4;
+  inset: 3% 0 4%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  opacity: 0;
+}
+#projects .gallery-active:is(:hover, :focus-within) .gallery-image-controls {
+  opacity: 1;
+}
+#projects .gallery-image-controls button {
+  pointer-events: auto;
+  width: 44px;
+  min-height: 44px;
+  padding: 0;
+  background: #10241ddd;
+  color: #fff;
+  border: 0;
+}
+#projects .gallery-index {
+  margin-top: 56px;
+}
+.concept-film .film-frame .film-controls[hidden] {
+  display: none !important;
+}
+.film-final,
+.film-field,
+.film-drawing,
+.film-register {
+  position: absolute;
+  pointer-events: none;
+  opacity: 0;
+}
+.film-final {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.film-field {
+  inset: 0;
+  background: #f1efe7;
+}
+.film-drawing {
+  overflow: visible;
+  color: #cdbcbc;
+  mix-blend-mode: difference;
+}
+.film-drawing path {
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 0.7;
+  vector-effect: non-scaling-stroke;
+}
+.film-drawing .line-hidden {
+  opacity: 0.16;
+}
+.film-register {
+  width: auto;
+  height: auto;
+  inset: 28px;
+  border: 1px solid #788179;
+}
+.concept-film[data-bridge="active"] .film-frame {
+  position: fixed;
+  inset: 0;
+  z-index: 12;
+}
+.concept-film[data-bridge="complete"] .film-frame {
+  visibility: hidden;
+}
+.concept-film[data-bridge="active"] .film-controls {
+  visibility: hidden;
+}
+.concept-film[data-bridge="active"] .film-titles {
+  visibility: hidden;
+}
+.film-media {
+  will-change: transform;
+}
+@media (pointer: coarse) {
+  #projects .gallery-image-controls {
+    opacity: 1;
+  }
+  #projects .gallery-image-controls button {
+    background: #10241d66;
+  }
+}
+@media (max-width: 600px) {
+  #projects .gallery-index {
+    margin-top: 8px;
+  }
+  .film-register {
+    inset: 12px;
+  }
+}
+@media (prefers-reduced-motion: reduce), (max-height: 599px) {
+  .film-final,
+  .film-field,
+  .film-drawing,
+  .film-register {
+    display: none;
+  }
+  .film-frame {
+    clip-path: none !important;
+  }
+}

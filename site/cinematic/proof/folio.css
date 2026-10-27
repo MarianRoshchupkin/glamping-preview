@@ -81,14 +81,6 @@ body {
 .cover-menu {
   display: none;
 }
-body:has(
-    .opening[data-transfer="active"],
-    .opening[data-transfer="preparing"],
-    .opening[data-transfer="complete"]
-  )
-  .cover-header {
-  visibility: hidden;
-}
 .photo-cover .cover-copy {
   bottom: 14%;
 }

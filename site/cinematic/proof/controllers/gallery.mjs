@@ -85,8 +85,6 @@ export function mountGallery(root, owner, onReady) {
     find("#gallery-active-label").textContent =
       `${item.family.toUpperCase()} / ${pad(position + 1)} — ${pad(items.length)}`;
     find("#gallery-active-caption").textContent = item.caption;
-    find("#gallery-count").textContent =
-      `${pad(position + 1)} / ${pad(items.length)}`;
   }
   function positionFamilyIndicator(animate = true) {
     const button = familyNav.querySelector('[aria-pressed="true"]');
@@ -195,8 +193,7 @@ export function mountGallery(root, owner, onReady) {
     gallery.dataset.family = activeFamily;
     gallery.dataset.empty = String(empty);
     find(".gallery-stage").hidden = empty;
-    find(".gallery-controls").hidden = empty;
-    find("#gallery-nearby").hidden = empty;
+    find(".gallery-image-controls").hidden = empty;
     const emptyMessage = find("#gallery-empty");
     if (emptyMessage) emptyMessage.hidden = !empty;
     gallery.querySelectorAll("[data-gallery-family]").forEach((button) => {
@@ -207,7 +204,6 @@ export function mountGallery(root, owner, onReady) {
     });
     positionFamilyIndicator();
     if (empty) {
-      find("#gallery-nearby").replaceChildren();
       preloads.splice(0).forEach((link) => link.remove());
       return;
     }
@@ -238,41 +234,6 @@ export function mountGallery(root, owner, onReady) {
       button.querySelector("span").textContent =
         `${pad(items.indexOf(item) + 1)} / ${item.family.toUpperCase()}`;
     });
-    const strip = find("#gallery-nearby");
-    const focusedId = strip.contains(document.activeElement)
-      ? document.activeElement.dataset.id
-      : null;
-    strip.replaceChildren();
-    // At most five unique nearby frames keep the archive bounded on every screen.
-    const nearby = new Set();
-    for (let offset = -2; offset <= 2; offset++) {
-      const item = neighbor(offset);
-      if (nearby.has(item)) continue;
-      nearby.add(item);
-      const button = document.createElement("button");
-      button.type = "button";
-      button.dataset.id = item.id;
-      button.setAttribute(
-        "aria-label",
-        `Кадр ${items.indexOf(item) + 1}: ${item.observation}`,
-      );
-      if (item === selected) button.setAttribute("aria-current", "true");
-      const image = document.createElement("img");
-      image.src = item.thumbnail;
-      image.alt = "";
-      image.width = item.thumbnailWidth;
-      image.height = item.thumbnailHeight;
-      image.loading = "lazy";
-      image.decoding = "async";
-      const label = document.createElement("span");
-      label.textContent = `${pad(items.indexOf(item) + 1)} / ${pad(items.length)}`;
-      button.append(image, label);
-      strip.append(button);
-    }
-    if (focusedId)
-      strip
-        .querySelector(`[data-id="${focusedId}"]`)
-        ?.focus({ preventScroll: true });
     preloadNeighbors();
   }
   function commitDialog(item) {
@@ -410,10 +371,7 @@ export function mountGallery(root, owner, onReady) {
       load ? loadSelected() : undefined,
     ]);
   }
-  async function filter(
-    { family = activeFamily } = {},
-    record = true,
-  ) {
+  async function filter({ family = activeFamily } = {}, record = true) {
     if (!owner.alive || (record && (closing || closeRequested))) return;
     activeFamily = family;
     const items = familyItems(activeFamily);
@@ -421,9 +379,8 @@ export function mountGallery(root, owner, onReady) {
       await select(
         items.includes(selected)
           ? selected
-          : items.find(
-              (item) => item.id === memory.get(activeFamily),
-            ) || firstFrame(activeFamily),
+          : items.find((item) => item.id === memory.get(activeFamily)) ||
+              firstFrame(activeFamily),
         {
           record,
         },
@@ -640,9 +597,7 @@ export function mountGallery(root, owner, onReady) {
     const item =
       retainedFrame ||
       frame ||
-      familyItems(slug).find(
-        (item) => item.id === memory.get(slug),
-      ) ||
+      familyItems(slug).find((item) => item.id === memory.get(slug)) ||
       firstFrame(slug);
     activeFamily = item?.familySlug || slug;
     // Closing the viewer retains its final frame; Back still restores its own entry.
@@ -739,17 +694,6 @@ export function mountGallery(root, owner, onReady) {
         positionFamilyIndicator(false);
       };
       attachMotion();
-      const nearby = find("#gallery-nearby");
-      owner.listen(nearby, "focusin", (event) => {
-        const button = event.target.closest("button");
-        if (!button) return;
-        const strip = nearby.getBoundingClientRect();
-        const frame = button.getBoundingClientRect();
-        if (frame.left < strip.left)
-          nearby.scrollLeft -= strip.left - frame.left;
-        else if (frame.right > strip.right)
-          nearby.scrollLeft += frame.right - strip.right;
-      });
       owner.listen(window, "pagehide", () => {
         cancelAnimationFrame(focusRAF);
         ++dialogVersion;
@@ -837,9 +781,7 @@ export function mountGallery(root, owner, onReady) {
         if (!target) return;
         if (target.matches("[data-gallery-family]")) {
           await filter({ family: target.dataset.galleryFamily });
-        } else if (
-          target.matches("[data-gallery-peer], #gallery-nearby button")
-        ) {
+        } else if (target.matches("[data-gallery-peer]")) {
           await select(library.find((item) => item.id === target.dataset.id));
         } else if (target.id === "gallery-previous") await select(neighbor(-1));
         else if (target.id === "gallery-next") await select(neighbor(1));
@@ -851,12 +793,6 @@ export function mountGallery(root, owner, onReady) {
           const item = library.find((entry) => entry.id === target.dataset.id);
           await select(item);
           openModal(target);
-        } else if (target.id === "gallery-index-open") {
-          event.preventDefault();
-          const index = find("#gallery-index");
-          index.open = true;
-          index.querySelector("summary").focus();
-          index.scrollIntoView({ block: "start", behavior: "instant" });
         }
       });
       owner.listen(dialog.querySelector("#gallery-close"), "click", () =>

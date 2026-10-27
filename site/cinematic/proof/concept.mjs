@@ -9,14 +9,16 @@ function mountFilm() {
     video = root.querySelector("video"),
     controls = root.querySelector(".film-controls"),
     toggle = root.querySelector("#film-toggle"),
-    external = document.querySelector("#film-external-toggle"),
-    status = document.querySelector("#film-status");
+    status = root.querySelector("#film-status"),
+    engineering = document.querySelector("#engineering");
   const reduced = matchMedia("(prefers-reduced-motion:reduce)"),
     tall = matchMedia("(min-height:600px)");
+  const starts = [0, 5.8, 9.2, 12, 14.8, 18];
   let visible = false,
     paused = false,
     failed = false,
     ticking = false,
+    bridge = 0,
     clock,
     timer;
   const eligible = () => !reduced.matches && tall.matches;
@@ -29,17 +31,25 @@ function mountFilm() {
   function render() {
     clock?.time(video.currentTime, false);
     root.dataset.shot = String(
-      video.currentTime >= 9 ? 2 : video.currentTime >= 4.5 ? 1 : 0,
+      Math.max(
+        0,
+        starts.findLastIndex((start) => video.currentTime >= start),
+      ),
     );
   }
   function sync() {
     const play =
-      visible && !paused && !failed && eligible() && !document.hidden;
-    controls.hidden = external.hidden = failed || !eligible();
-    for (const button of [toggle, external]) {
-      button.setAttribute("aria-pressed", String(paused));
-      button.textContent = paused ? "Воспроизвести фильм" : "Пауза фильма";
-    }
+      owner.alive &&
+      visible &&
+      !paused &&
+      !failed &&
+      eligible() &&
+      !document.hidden &&
+      bridge < 0.12 &&
+      !video.ended;
+    controls.hidden = failed || !eligible();
+    toggle.setAttribute("aria-pressed", String(paused));
+    toggle.textContent = paused ? "Воспроизвести фильм" : "Пауза фильма";
     if (play) {
       if (!video.getAttribute("src"))
         video.src = matchMedia("(max-width:900px)").matches
@@ -51,15 +61,14 @@ function mountFilm() {
           !visible ||
           paused ||
           !eligible() ||
-          document.hidden
+          document.hidden ||
+          bridge >= 0.12
         )
           return;
         paused = true;
-        for (const button of [toggle, external])
-          button.setAttribute("aria-pressed", "true");
         root.dataset.playRejected = "true";
+        toggle.setAttribute("aria-pressed", "true");
         toggle.textContent = "Воспроизвести фильм";
-        external.textContent = toggle.textContent;
         setTicking(false);
       });
     } else {
@@ -67,10 +76,6 @@ function mountFilm() {
       setTicking(false);
     }
     if (!eligible() || failed) root.dataset.ready = "false";
-  }
-  function togglePause() {
-    paused = !paused;
-    sync();
   }
   function showControls() {
     root.dataset.controls = "true";
@@ -80,23 +85,32 @@ function mountFilm() {
     }, 2200);
   }
   video.muted = true;
-  video.loop = true;
-  owner.listen(toggle, "click", togglePause);
-  owner.listen(external, "click", togglePause);
+  video.loop = false;
+  owner.listen(toggle, "click", () => {
+    paused = !paused;
+    if (!paused && video.ended) video.currentTime = 0;
+    sync();
+  });
+  owner.listen(frame, "pointerenter", showControls);
   owner.listen(frame, "pointermove", showControls);
   owner.listen(frame, "pointerdown", showControls);
+  owner.listen(frame, "focusin", showControls);
   owner.listen(video, "playing", () => {
     root.dataset.ready = "true";
     delete root.dataset.playRejected;
     setTicking(true);
   });
   owner.listen(video, "pause", () => setTicking(false));
-  owner.listen(video, "seeked", render);
+  owner.listen(video, "ended", () => {
+    paused = true;
+    sync();
+    render();
+  });
   owner.listen(video, "error", () => {
     failed = true;
     sync();
     status.textContent =
-      "Видео недоступно. Сохранён статичный образ среды. Архитектурная схема и галерея доступны.";
+      "Видео недоступно. Сохранён статичный кадр; схема и галерея доступны.";
   });
   owner.listen(document, "visibilitychange", sync);
   owner.listen(reduced, "change", sync);
@@ -113,32 +127,74 @@ function mountFilm() {
   media.add(
     "(prefers-reduced-motion:no-preference) and (min-height:600px)",
     () => {
+      const final = new Image();
+      final.className = "film-final";
+      final.alt = "";
+      final.src =
+        "/glamping-preview/cinematic/media/" +
+        (innerWidth <= 900
+          ? "concept-final-mobile.webp"
+          : "concept-final.webp");
+      const field = document.createElement("div");
+      field.className = "film-field";
+      const drawing = engineering
+        .querySelector(".paper-geometry")
+        .cloneNode(true);
+      drawing.setAttribute("class", "film-drawing");
+      drawing.setAttribute("aria-hidden", "true");
+      const register = document.createElement("div");
+      register.className = "film-register";
+      for (const node of [field, drawing, register])
+        node.setAttribute("aria-hidden", "true");
+      for (const node of drawing.querySelectorAll("[id]")) {
+        const id = node.id;
+        node.id = "film-" + id;
+        for (const ref of drawing.querySelectorAll(
+          "[fill],[stroke],[clip-path]",
+        )) {
+          for (const attr of ["fill", "stroke", "clip-path"]) {
+            if (ref.getAttribute(attr)?.includes("#" + id))
+              ref.setAttribute(
+                attr,
+                ref.getAttribute(attr).replaceAll("#" + id, "#film-" + id),
+              );
+          }
+        }
+      }
+      frame.append(final, field, drawing, register);
+      let ready = false,
+        active = true,
+        trigger;
+      const measure = () => {
+        const source = engineering
+          .querySelector(".paper-base .geometry-frame")
+          .getBoundingClientRect();
+        const stage = engineering
+          .querySelector(".structural-stage")
+          .getBoundingClientRect();
+        gsap.set(drawing, {
+          left: source.left,
+          top: source.top - stage.top,
+          width: source.width,
+          height: source.height,
+        });
+      };
       const context = gsap.context(() => {
         const words = root.querySelectorAll(".film-word");
-        gsap.set(words, {
-          opacity: 0,
-          yPercent: 30,
-          clipPath: "inset(0 0 100% 0)",
-        });
-        clock = gsap.timeline({ paused: true });
-        clock.to({}, { duration: 14 });
-        [0, 4.5, 9].forEach((start, index) => {
+        gsap.set(words, { opacity: 0, yPercent: 25 });
+        clock = gsap.timeline({ paused: true }).to({}, { duration: 22 });
+        starts.forEach((start, index) => {
           clock
             .fromTo(
               words[index],
-              { opacity: 0, yPercent: 30, clipPath: "inset(0 0 100% 0)" },
-              {
-                opacity: 1,
-                yPercent: 0,
-                clipPath: "inset(0 0 0% 0)",
-                duration: 0.5,
-              },
-              start + 0.15,
+              { opacity: 0, yPercent: 25 },
+              { opacity: 1, yPercent: 0, duration: 0.45 },
+              start + 0.2,
             )
             .to(
               words[index],
-              { opacity: 0, yPercent: -15, duration: 0.45 },
-              start + 1.6,
+              { opacity: 0, yPercent: -12, duration: 0.45 },
+              start + 1.7,
             );
         });
         gsap.fromTo(
@@ -148,7 +204,7 @@ function mountFilm() {
             clipPath: "inset(0% 0%)",
             ease: "none",
             scrollTrigger: {
-              id: "phase2936-film-entry",
+              id: "phase2938-film-entry",
               trigger: root,
               start: "top bottom",
               end: "top top",
@@ -156,26 +212,95 @@ function mountFilm() {
             },
           },
         );
+        const handoff = gsap
+          .timeline({ paused: true, defaults: { ease: "none" } })
+          .fromTo(
+            final,
+            { opacity: 0, scale: 1 },
+            { opacity: 1, scale: 1.045, duration: 0.22 },
+            0,
+          )
+          .fromTo(
+            drawing,
+            { opacity: 0, clipPath: "inset(0 100% 0 0)" },
+            { opacity: 0.75, clipPath: "inset(0 0% 0 0)", duration: 0.42 },
+            0.14,
+          )
+          .fromTo(
+            field,
+            { opacity: 1, clipPath: "inset(0 100% 0 0)" },
+            { clipPath: "inset(0 0% 0 0)", duration: 0.5 },
+            0.36,
+          )
+          .fromTo(
+            register,
+            { opacity: 0 },
+            { opacity: 0.45, duration: 0.24 },
+            0.34,
+          )
+          .to(register, { opacity: 0, duration: 0.18 }, 0.82)
+          .to(drawing, { opacity: 1, duration: 0.18 }, 0.68)
+          .to(frame, { opacity: 0, duration: 0.08 }, 0.92);
+        const update = (self) => {
+          const previous = bridge;
+          bridge = self.progress;
+          root.dataset.bridge =
+            bridge >= 1 ? "complete" : bridge > 0 ? "active" : "before";
+          document.body.dataset.filmHandoff = String(bridge > 0 && bridge < 1);
+          handoff.progress(bridge);
+          controls.inert = bridge > 0;
+          // Final source still is optional; the poster/video continues coherently until it decodes.
+          if (!ready) gsap.set(final, { opacity: 0 });
+          if (previous < 0.12 !== bridge < 0.12) sync();
+        };
+        measure();
+        trigger = ScrollTrigger.create({
+          id: "phase2938-film-xray",
+          trigger: engineering,
+          start: "top bottom",
+          end: "top top",
+          onUpdate: update,
+          onRefresh: (self) => {
+            measure();
+            update(self);
+          },
+        });
         ScrollTrigger.create({
-          id: "phase2936-film-immersive",
+          id: "phase2938-film-immersive",
           trigger: root,
           start: "top top",
-          end: "bottom top",
+          endTrigger: engineering,
+          end: "top top",
           onToggle: (self) => {
             document.body.dataset.filmImmersive = String(self.isActive);
           },
         });
+        final
+          .decode()
+          .then(() => {
+            if (owner.alive && active) {
+              ready = true;
+              update(trigger);
+            }
+          })
+          .catch(() => {});
       }, root);
       return () => {
+        active = false;
         clock = undefined;
         context.revert();
+        for (const node of [final, field, drawing, register]) node.remove();
+        bridge = 0;
+        delete root.dataset.bridge;
+        delete document.body.dataset.filmHandoff;
         delete document.body.dataset.filmImmersive;
+        sync();
       };
     },
   );
   owner.cleanup(() => {
     clearTimeout(timer);
-    controls.hidden = external.hidden = true;
+    controls.hidden = true;
     setTicking(false);
     observer.disconnect();
     media.revert();
@@ -183,12 +308,10 @@ function mountFilm() {
     video.removeAttribute("src");
     video.load();
     status.textContent = "";
-    delete root.dataset.ready;
-    delete root.dataset.controls;
-    delete root.dataset.playRejected;
-    delete document.body.dataset.filmImmersive;
+    for (const key of ["ready", "controls", "playRejected"])
+      delete root.dataset[key];
   });
-  window.__phase2936Film = {
+  window.__phase2938Film = {
     get diagnostics() {
       return {
         shot: root.dataset.shot,
@@ -196,6 +319,7 @@ function mountFilm() {
         paused,
         source: video.getAttribute("src"),
         time: video.currentTime,
+        bridge,
         triggers: ScrollTrigger.getAll().map((t) => t.vars.id),
       };
     },
@@ -209,7 +333,6 @@ function mountFilm() {
     if (!event.persisted) owner.dispose();
   });
   sync();
-  return owner;
 }
 mountFilm();
 const navigation = createOwnership();

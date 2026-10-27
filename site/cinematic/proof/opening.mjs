@@ -6,6 +6,61 @@ import { mountHero } from "/glamping-preview/cinematic/proof/hero.mjs";
 gsap.registerPlugin(ScrollTrigger);
 function mount() {
   const owner = createOwnership();
+  const header = document.querySelector(".cover-header");
+  const headerMedia = gsap.matchMedia();
+  headerMedia.add(
+    { reduced: "(prefers-reduced-motion:reduce)", all: "all" },
+    (conditions) => {
+      const headerEvents = createOwnership();
+      const context = gsap.context(() => {
+        header.classList.add("motion-header");
+        const fade = gsap
+          .timeline({ paused: true })
+          .fromTo(
+            header,
+            { opacity: 1, y: 0 },
+            {
+              opacity: 0,
+              y: conditions.conditions.reduced ? 0 : -28,
+              duration: 1,
+              ease: "power1.inOut",
+            },
+          );
+        let trigger;
+        const renderHeader = () => {
+          const focused = header.contains(document.activeElement);
+          const progress = focused
+            ? 0
+            : (trigger?.progress ?? Math.min(1, scrollY / 200));
+          fade.progress(progress);
+          header.inert = progress >= 1;
+          header.setAttribute("aria-hidden", String(progress >= 1));
+        };
+        trigger = ScrollTrigger.create({
+          id: "phase2938-header",
+          start: 0,
+          end: 200,
+          onUpdate: renderHeader,
+          onRefresh: renderHeader,
+        });
+        headerEvents.listen(header, "focusin", renderHeader);
+        headerEvents.listen(header, "focusout", () =>
+          queueMicrotask(() => {
+            if (owner.alive) renderHeader();
+          }),
+        );
+        renderHeader();
+      }, header);
+      return () => {
+        headerEvents.dispose();
+        context.revert();
+        header.classList.remove("motion-header");
+        header.inert = false;
+        header.removeAttribute("aria-hidden");
+      };
+    },
+  );
+  owner.cleanup(() => headerMedia.revert());
   const hero = mountHero(owner);
   const opening = document.querySelector(".opening");
   const cover = opening.querySelector(".photo-cover");
@@ -52,9 +107,17 @@ function mount() {
       height: box.height,
     };
     end = cover.offsetHeight;
-    const title = opening.querySelector("#origin-title").getBoundingClientRect();
-    const folio = opening.querySelector(".origin-folio").getBoundingClientRect();
-    titleBounds = { top: title.top + scrollY, height: title.height, gap: box.top - title.bottom };
+    const title = opening
+      .querySelector("#origin-title")
+      .getBoundingClientRect();
+    const folio = opening
+      .querySelector(".origin-folio")
+      .getBoundingClientRect();
+    titleBounds = {
+      top: title.top + scrollY,
+      height: title.height,
+      gap: box.top - title.bottom,
+    };
     folioBounds = { top: folio.top + scrollY, offset: title.top - folio.top };
   }
   function freeze(commit = true) {
@@ -78,7 +141,9 @@ function mount() {
     destination.src = frozenSource;
     destination.style.objectPosition = image.style.objectPosition;
     target.href = frozenSource;
-    const caption = frozenSource.includes("chum-") ? "Чум · экстерьер" : "Амба · экстерьер";
+    const caption = frozenSource.includes("chum-")
+      ? "Чум · экстерьер"
+      : "Амба · экстерьер";
     destination.alt = caption;
     target.closest("figure").querySelector("figcaption").textContent = caption;
     const atlasReady = destination.decode();
@@ -168,7 +233,8 @@ function mount() {
     }
     opening.dataset.transfer = "active";
     const smooth = (n) => n * n * (3 - 2 * n);
-    const range = (n, start, end) => Math.max(0, Math.min(1, (n - start) / (end - start)));
+    const range = (n, start, end) =>
+      Math.max(0, Math.min(1, (n - start) / (end - start)));
     const mobile = innerWidth <= 900;
     const eased = smooth(p);
     const sizeProgress = mobile ? smooth(range(p, 0.24, 1)) : eased;
@@ -210,8 +276,14 @@ function mount() {
       const titleTop = y - titleBounds.height - titleBounds.gap;
       const available = smooth(range(titleTop, 12, 100));
       opening.style.setProperty("--atlas-title", available);
-      opening.style.setProperty("--atlas-title-y", titleTop - (titleBounds.top - scrollY) + "px");
-      opening.style.setProperty("--atlas-folio-y", titleTop - folioBounds.offset - (folioBounds.top - scrollY) + "px");
+      opening.style.setProperty(
+        "--atlas-title-y",
+        titleTop - (titleBounds.top - scrollY) + "px",
+      );
+      opening.style.setProperty(
+        "--atlas-folio-y",
+        titleTop - folioBounds.offset - (folioBounds.top - scrollY) + "px",
+      );
     }
   }
   const media = gsap.matchMedia();
