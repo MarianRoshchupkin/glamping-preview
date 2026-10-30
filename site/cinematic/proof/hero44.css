@@ -1,0 +1,115 @@
+/* A complete architectural subject over house-free crops of its own environment. */
+.hero-house.hero-composition {
+  margin: 0;
+  overflow: clip;
+  background: #e3ded6;
+}
+.hero-composition::before,
+.reveal-khamoran::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  aspect-ratio: 1254 / 185;
+  background: url("../assets/phase29-44/chum-environment.webp") center / 100% 100%;
+  mask-image: linear-gradient(#000, transparent);
+}
+.hero-house .hero-subject {
+  position: absolute;
+  top: 4%;
+  left: 63%;
+  width: auto;
+  max-width: none;
+  height: 92%;
+  transform: translateX(-50%);
+  object-fit: contain;
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 94%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 96%, transparent);
+  mask-composite: intersect;
+}
+.reveal-khamoran {
+  background: #394233;
+}
+.reveal-khamoran::before {
+  aspect-ratio: 1075 / 220;
+  background-image: url("../assets/phase29-44/khamoran-canopy.webp");
+}
+.reveal-khamoran img {
+  top: -4%;
+  left: 64%;
+  width: auto;
+  height: 112%;
+  max-width: none;
+  transform: translateX(-50%);
+  object-fit: contain;
+  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 83%, transparent), linear-gradient(180deg, transparent, #000 12%, #000 88%, transparent);
+  mask-composite: intersect;
+}
+.hero-shade {
+  background: linear-gradient(90deg, #07120bd9 0%, #07120b70 30%, transparent 63%), linear-gradient(180deg, #07120b99, transparent 26%, transparent 73%, #07120b55);
+}
+/* The new chapter must flow after Hero, outside the fixed-film overlay. */
+.unified-hero[data-enhanced="true"] .film-frame {
+  position: sticky;
+  inset: auto;
+  top: 0;
+}
+.unified-hero { max-width: none; width: 100vw; margin-left: calc((100% - 100vw) / 2); }
+html[data-hero-variant="b"] .hero-house .hero-subject {
+  left: 54%;
+  top: 8%;
+  height: 84%;
+}
+html[data-hero-variant="b"] .reveal-khamoran img {
+  left: 54%;
+  top: 2%;
+  height: 102%;
+}
+@media (max-width: 900px) {
+  .hero-house .hero-subject {
+    top: 12%;
+    left: 50%;
+    width: 116%;
+    height: auto;
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 94%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 96%, transparent);
+  }
+  .reveal-khamoran img {
+    top: 18%;
+    left: 50%;
+    width: 140%;
+    height: auto;
+    transform: translateX(-50%);
+  }
+  .hero-shade {
+    background: linear-gradient(180deg, #07120bba, transparent 28%, transparent 60%, #07120bbf);
+  }
+}
+@media (min-width: 600px) and (max-width: 900px) {
+  .hero-house .hero-subject { width: 96%; top: 4%; }
+  .reveal-khamoran img { width: 105%; top: 2%; }
+}
+@media (max-height: 599px) {
+  .hero-house .hero-subject { width: auto; height: 78%; top: 13%; }
+}
+@media (max-width: 900px) and (max-height: 599px) {
+  .hero-house .hero-subject { width: 108%; height: auto; top: 20%; }
+}
+
+/* Fixed photographic geometry; GSAP owns the decoded crossfade, never a moving mask. */
+.unified-hero .hero-reveal {
+  opacity: 0;
+  mask-image: none;
+}
+.unified-hero .hero-accent {
+  will-change: opacity, transform;
+}
+/* The sticky plane leaves in normal flow; no visibility cut interrupts scrub catch-up. */
+.unified-hero[data-bridge="complete"] .film-frame {
+  visibility: visible;
+}
+/* Compact normal-motion Hero keeps the same film and paper handoff. */
+@media (max-height: 599px) and (prefers-reduced-motion: no-preference) {
+  #hero[data-enhanced="true"] .film-frame { position: sticky; }
+  #hero[data-enhanced="true"] .hero-reveal:not(.reveal-roof),
+  #hero[data-enhanced="true"] .film-field { display: block; }
+}

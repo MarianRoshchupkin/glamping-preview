@@ -1,24 +1,5 @@
 const galleryLibrary = [
   {
-    id: "ASSET-P14-8bf2c9c82d407ddf",
-    family: "Амба",
-    familySlug: "amba",
-    kind: "exterior",
-    title: "Амба · экстерьер",
-    observation:
-      "Низкий угловой вид тёмного вытянутого объёма с двускатной крышей, угловым остеклением и лесом.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8bf2c9c82d407ddf-1600.webp",
-    width: 1067,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8bf2c9c82d407ddf-480.webp",
-    thumbnailWidth: 320,
-    thumbnailHeight: 480,
-    caption: "Экстерьер · угловой ракурс",
-    order: 1,
-    zone: "exterior",
-  },
-  {
     id: "ASSET-P14-f39afb84347024ce",
     family: "Амба",
     familySlug: "amba",
@@ -26,7 +7,8 @@ const galleryLibrary = [
     title: "Амба · экстерьер",
     observation:
       "Широкий вид длинного фасада: остекление нижней части, рейчатый экран справа, настил и лес.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-f39afb84347024ce-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-f39afb84347024ce-1600.webp",
     width: 1364,
     height: 908,
     thumbnail:
@@ -34,7 +16,47 @@ const galleryLibrary = [
     thumbnailWidth: 480,
     thumbnailHeight: 320,
     caption: "Экстерьер · длинный фасад",
+    order: 1,
+    zone: "exterior",
+  },
+  {
+    id: "ASSET-P14-8bf2c9c82d407ddf",
+    family: "Амба",
+    familySlug: "amba",
+    kind: "exterior",
+    title: "Амба · экстерьер",
+    observation:
+      "Низкий угловой вид тёмного вытянутого объёма с двускатной крышей, угловым остеклением и лесом.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8bf2c9c82d407ddf-1600.webp",
+    width: 1067,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8bf2c9c82d407ddf-480.webp",
+    thumbnailWidth: 320,
+    thumbnailHeight: 480,
+    caption: "Экстерьер · угловой ракурс",
     order: 2,
+    zone: "exterior",
+  },
+  {
+    id: "ASSET-P14-8290f0b9f8ff267b",
+    family: "Амба",
+    familySlug: "amba",
+    kind: "exterior",
+    title: "Амба · экстерьер",
+    observation:
+      "Фронтальный вид поднятого гейбла, наружная лестница слева и открытое нижнее пространство; лес.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8290f0b9f8ff267b-1600.webp",
+    width: 1067,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8290f0b9f8ff267b-480.webp",
+    thumbnailWidth: 320,
+    thumbnailHeight: 480,
+    caption: "Экстерьер · фронтальный ракурс",
+    order: 3,
     zone: "exterior",
   },
   {
@@ -45,7 +67,8 @@ const galleryLibrary = [
     title: "Амба · интерьер",
     observation:
       "Диван и кресло у углового остекления, подвес и рейчатый экран; лес за стеклом.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-aba3aa04705d9649-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-aba3aa04705d9649-1600.webp",
     width: 1600,
     height: 1067,
     thumbnail:
@@ -53,27 +76,8 @@ const galleryLibrary = [
     thumbnailWidth: 480,
     thumbnailHeight: 320,
     caption: "Гостиная · угловое остекление",
-    order: 3,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-16123eb86e0db200",
-    family: "Амба",
-    familySlug: "amba",
-    kind: "detail",
-    title: "Амба · деталь",
-    observation:
-      "Кухонная тумба, раковина и выраженные световые полосы на стене; вертикальная деталь.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-detail-16123eb86e0db200-1600.webp",
-    width: 1199,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-detail-16123eb86e0db200-480.webp",
-    thumbnailWidth: 360,
-    thumbnailHeight: 480,
-    caption: "Кухня · детали освещения",
     order: 4,
-    zone: "kitchen",
+    zone: "living",
   },
   {
     id: "ASSET-P14-830daf4f14eeb74f",
@@ -83,7 +87,8 @@ const galleryLibrary = [
     title: "Амба · интерьер",
     observation:
       "Открытая лестница у рейчатого экрана и кухонной тумбы; широкий интерьер.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-830daf4f14eeb74f-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-830daf4f14eeb74f-1600.webp",
     width: 1600,
     height: 900,
     thumbnail:
@@ -101,7 +106,8 @@ const galleryLibrary = [
     kind: "interior",
     title: "Амба · интерьер",
     observation: "Матрас под повторяющимися двускатными рёбрами, окно в торце.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-f502f22a827a142f-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-f502f22a827a142f-1600.webp",
     width: 1600,
     height: 1064,
     thumbnail:
@@ -113,25 +119,6 @@ const galleryLibrary = [
     zone: "bedroom",
   },
   {
-    id: "ASSET-P14-520efb0c74483a7c",
-    family: "Амба",
-    familySlug: "amba",
-    kind: "interior",
-    title: "Амба · интерьер",
-    observation:
-      "Кухня под горизонтальным окном; волокнистые подвесы и выразительный рисунок фронтов.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-520efb0c74483a7c-1600.webp",
-    width: 1500,
-    height: 1500,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-520efb0c74483a7c-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 480,
-    caption: "Кухня · у окна",
-    order: 7,
-    zone: "kitchen",
-  },
-  {
     id: "ASSET-P14-8864471d1e3f770e",
     family: "Амба",
     familySlug: "amba",
@@ -139,7 +126,8 @@ const galleryLibrary = [
     title: "Амба · интерьер",
     observation:
       "Кровать у горизонтального окна, круглый декор стены и волокнистые подвесы; кухня слева.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-8864471d1e3f770e-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-8864471d1e3f770e-1600.webp",
     width: 1500,
     height: 1500,
     thumbnail:
@@ -147,27 +135,105 @@ const galleryLibrary = [
     thumbnailWidth: 480,
     thumbnailHeight: 480,
     caption: "Спальня · общий вид",
-    order: 8,
+    order: 7,
     zone: "bedroom",
   },
   {
-    id: "ASSET-P14-8290f0b9f8ff267b",
+    id: "ASSET-P14-520efb0c74483a7c",
     family: "Амба",
     familySlug: "amba",
-    kind: "exterior",
-    title: "Амба · экстерьер",
+    kind: "interior",
+    title: "Амба · интерьер",
     observation:
-      "Фронтальный вид поднятого гейбла, наружная лестница слева и открытое нижнее пространство; лес.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8290f0b9f8ff267b-1600.webp",
+      "Кухня под горизонтальным окном; волокнистые подвесы и выразительный рисунок фронтов.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-520efb0c74483a7c-1600.webp",
+    width: 1500,
+    height: 1500,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-interior-520efb0c74483a7c-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 480,
+    caption: "Кухня · у окна",
+    order: 8,
+    zone: "kitchen",
+  },
+  {
+    id: "ASSET-P14-16123eb86e0db200",
+    family: "Амба",
+    familySlug: "amba",
+    kind: "detail",
+    title: "Амба · деталь",
+    observation:
+      "Кухонная тумба, раковина и выраженные световые полосы на стене; вертикальная деталь.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-detail-16123eb86e0db200-1600.webp",
+    width: 1199,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-detail-16123eb86e0db200-480.webp",
+    thumbnailWidth: 360,
+    thumbnailHeight: 480,
+    caption: "Кухня · детали освещения",
+    order: 9,
+    zone: "kitchen",
+  },
+  {
+    id: "ASSET-P14-a3e6c47cff6b66b6",
+    family: "Дё",
+    familySlug: "dyo",
+    kind: "interior",
+    title: "Дё · интерьер",
+    observation: "Широкий интерьер со столом, диваном, окнами и подвесами.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-a3e6c47cff6b66b6-1600.webp",
+    width: 1600,
+    height: 900,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-a3e6c47cff6b66b6-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 270,
+    caption: "Интерьер · общий вид",
+    order: 1,
+    zone: "living",
+  },
+  {
+    id: "ASSET-P14-cdce83c032c35769",
+    family: "Дё",
+    familySlug: "dyo",
+    kind: "interior",
+    title: "Дё · интерьер",
+    observation: "Стол, стул и диван в дневном свете; узорная рама проёма.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-cdce83c032c35769-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/amba-exterior-8290f0b9f8ff267b-480.webp",
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-cdce83c032c35769-480.webp",
     thumbnailWidth: 320,
     thumbnailHeight: 480,
-    caption: "Экстерьер · фронтальный ракурс",
-    order: 9,
-    zone: "exterior",
+    caption: "Гостиная и обеденная зона",
+    order: 2,
+    zone: "living",
+  },
+  {
+    id: "ASSET-P14-9c6afa85a86661e2",
+    family: "Дё",
+    familySlug: "dyo",
+    kind: "interior",
+    title: "Дё · интерьер",
+    observation: "Стол и стулья перед окном; два подвеса и зелень за стеклом.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-9c6afa85a86661e2-1600.webp",
+    width: 1067,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-9c6afa85a86661e2-480.webp",
+    thumbnailWidth: 320,
+    thumbnailHeight: 480,
+    caption: "Обеденная зона · у окна",
+    order: 3,
+    zone: "living",
   },
   {
     id: "ASSET-P14-c5f93756e4481db8",
@@ -177,7 +243,8 @@ const galleryLibrary = [
     title: "Дё · интерьер",
     observation:
       "Мягкое спальное/сидячее место через внутренний проём; штора и узорный ковёр.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-c5f93756e4481db8-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-c5f93756e4481db8-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
@@ -185,7 +252,7 @@ const galleryLibrary = [
     thumbnailWidth: 320,
     thumbnailHeight: 480,
     caption: "Спальное пространство · вид через проём",
-    order: 10,
+    order: 4,
     zone: "bedroom",
   },
   {
@@ -195,7 +262,8 @@ const galleryLibrary = [
     kind: "interior",
     title: "Дё · интерьер",
     observation: "Стол с сервировкой перед кухней и узорной перегородкой.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-3ff835d8bd5b98d8-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-3ff835d8bd5b98d8-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
@@ -203,7 +271,7 @@ const galleryLibrary = [
     thumbnailWidth: 320,
     thumbnailHeight: 480,
     caption: "Кухня и обеденная зона",
-    order: 11,
+    order: 5,
     zone: "kitchen",
   },
   {
@@ -214,33 +282,17 @@ const galleryLibrary = [
     title: "Дё · деталь",
     observation:
       "Вертикальный вид кухонной ниши с холодильником и узорной перегородкой.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-detail-775b2c306ad6602f-1600.webp",
-    width: 1067,
-    height: 1600,
-    thumbnail: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-detail-775b2c306ad6602f-480.webp",
-    thumbnailWidth: 320,
-    thumbnailHeight: 480,
-    caption: "Кухня · вертикальный ракурс",
-    order: 12,
-    zone: "kitchen",
-  },
-  {
-    id: "ASSET-P14-9c6afa85a86661e2",
-    family: "Дё",
-    familySlug: "dyo",
-    kind: "interior",
-    title: "Дё · интерьер",
-    observation: "Стол и стулья перед окном; два подвеса и зелень за стеклом.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-9c6afa85a86661e2-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-detail-775b2c306ad6602f-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-9c6afa85a86661e2-480.webp",
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-detail-775b2c306ad6602f-480.webp",
     thumbnailWidth: 320,
     thumbnailHeight: 480,
-    caption: "Обеденная зона · у окна",
-    order: 13,
-    zone: "living",
+    caption: "Кухня · вертикальный ракурс",
+    order: 6,
+    zone: "kitchen",
   },
   {
     id: "ASSET-P14-415acc78991e19f6",
@@ -250,7 +302,8 @@ const galleryLibrary = [
     title: "Дё · интерьер",
     observation:
       "Санузел: душевая зона, унитаз и часть зеркала с лучистой рамой.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-415acc78991e19f6-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-415acc78991e19f6-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
@@ -258,44 +311,8 @@ const galleryLibrary = [
     thumbnailWidth: 320,
     thumbnailHeight: 480,
     caption: "Санузел · душевая зона",
-    order: 14,
+    order: 7,
     zone: "bathroom",
-  },
-  {
-    id: "ASSET-P14-cdce83c032c35769",
-    family: "Дё",
-    familySlug: "dyo",
-    kind: "interior",
-    title: "Дё · интерьер",
-    observation: "Стол, стул и диван в дневном свете; узорная рама проёма.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-cdce83c032c35769-1600.webp",
-    width: 1067,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-cdce83c032c35769-480.webp",
-    thumbnailWidth: 320,
-    thumbnailHeight: 480,
-    caption: "Гостиная и обеденная зона",
-    order: 15,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-a3e6c47cff6b66b6",
-    family: "Дё",
-    familySlug: "dyo",
-    kind: "interior",
-    title: "Дё · интерьер",
-    observation: "Широкий интерьер со столом, диваном, окнами и подвесами.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-a3e6c47cff6b66b6-1600.webp",
-    width: 1600,
-    height: 900,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-a3e6c47cff6b66b6-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 270,
-    caption: "Интерьер · общий вид",
-    order: 16,
-    zone: "living",
   },
   {
     id: "ASSET-P14-14c867192050295d",
@@ -305,7 +322,8 @@ const galleryLibrary = [
     title: "Дё · интерьер",
     observation:
       "Фронтальный вид санузла: унитаз, раковина, зеркало с лучистой рамой.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-14c867192050295d-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/dyo-interior-14c867192050295d-1600.webp",
     width: 1067,
     height: 1600,
     thumbnail:
@@ -313,8 +331,47 @@ const galleryLibrary = [
     thumbnailWidth: 320,
     thumbnailHeight: 480,
     caption: "Санузел · фронтальный ракурс",
-    order: 17,
+    order: 8,
     zone: "bathroom",
+  },
+  {
+    id: "ASSET-P14-9929b4302afced8e",
+    family: "Хаморан",
+    familySlug: "khamoran",
+    kind: "exterior",
+    title: "Хаморан · экстерьер",
+    observation:
+      "Округлый сужающийся корпус с чешуйчатыми элементами, входом и окном; лес, вода и отражение.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-exterior-9929b4302afced8e-1600.webp",
+    width: 1075,
+    height: 976,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-exterior-9929b4302afced8e-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 436,
+    caption: "Экстерьер · округлый объём",
+    order: 1,
+    zone: "exterior",
+  },
+  {
+    id: "ASSET-P14-5000d5b82fe4d0e0",
+    family: "Хаморан",
+    familySlug: "khamoran",
+    kind: "interior",
+    title: "Хаморан · интерьер",
+    observation: "Три стула у подоконного стола под широким окном.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-interior-5000d5b82fe4d0e0-1600.webp",
+    width: 1080,
+    height: 1080,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-interior-5000d5b82fe4d0e0-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 480,
+    caption: "Обеденная зона · у окна",
+    order: 2,
+    zone: "living",
   },
   {
     id: "ASSET-P14-6db29b2609b17b0a",
@@ -333,8 +390,28 @@ const galleryLibrary = [
     thumbnailWidth: 270,
     thumbnailHeight: 480,
     caption: "Спальное пространство · верхний свет",
-    order: 18,
+    order: 3,
     zone: "bedroom",
+  },
+  {
+    id: "ASSET-P14-e19969c4ce170a84",
+    family: "Хаморан",
+    familySlug: "khamoran",
+    kind: "detail",
+    title: "Хаморан · деталь",
+    observation:
+      "Кухонная деталь у окна: варочная поверхность, раковина и полки.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-detail-e19969c4ce170a84-1600.webp",
+    width: 1005,
+    height: 960,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-detail-e19969c4ce170a84-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 459,
+    caption: "Кухня · рабочая поверхность",
+    order: 4,
+    zone: "kitchen",
   },
   {
     id: "ASSET-P14-ad194e80531ed81a",
@@ -353,7 +430,7 @@ const galleryLibrary = [
     thumbnailWidth: 480,
     thumbnailHeight: 480,
     caption: "Санузел · фронтальный ракурс",
-    order: 19,
+    order: 5,
     zone: "bathroom",
   },
   {
@@ -373,197 +450,7 @@ const galleryLibrary = [
     thumbnailWidth: 360,
     thumbnailHeight: 480,
     caption: "Санузел · душевая зона",
-    order: 20,
-    zone: "bathroom",
-  },
-  {
-    id: "ASSET-P14-e19969c4ce170a84",
-    family: "Хаморан",
-    familySlug: "khamoran",
-    kind: "detail",
-    title: "Хаморан · деталь",
-    observation:
-      "Кухонная деталь у окна: варочная поверхность, раковина и полки.",
-    image:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-detail-e19969c4ce170a84-1600.webp",
-    width: 1005,
-    height: 960,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-detail-e19969c4ce170a84-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 459,
-    caption: "Кухня · рабочая поверхность",
-    order: 21,
-    zone: "kitchen",
-  },
-  {
-    id: "ASSET-P14-5000d5b82fe4d0e0",
-    family: "Хаморан",
-    familySlug: "khamoran",
-    kind: "interior",
-    title: "Хаморан · интерьер",
-    observation: "Три стула у подоконного стола под широким окном.",
-    image:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-interior-5000d5b82fe4d0e0-1600.webp",
-    width: 1080,
-    height: 1080,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-interior-5000d5b82fe4d0e0-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 480,
-    caption: "Обеденная зона · у окна",
-    order: 22,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-9929b4302afced8e",
-    family: "Хаморан",
-    familySlug: "khamoran",
-    kind: "exterior",
-    title: "Хаморан · экстерьер",
-    observation:
-      "Округлый сужающийся корпус с чешуйчатыми элементами, входом и окном; лес, вода и отражение.",
-    image:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-exterior-9929b4302afced8e-1600.webp",
-    width: 1075,
-    height: 976,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/khamoran-exterior-9929b4302afced8e-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 436,
-    caption: "Экстерьер · округлый объём",
-    order: 23,
-    zone: "exterior",
-  },
-  {
-    id: "ASSET-P14-6da810d1a767a8b1",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "detail",
-    title: "Чум · деталь",
-    observation: "Санузел: душевая ниша и полотенца, часть унитаза.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-6da810d1a767a8b1-1600.webp",
-    width: 900,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-6da810d1a767a8b1-480.webp",
-    thumbnailWidth: 270,
-    thumbnailHeight: 480,
-    caption: "Санузел · душевая ниша",
-    order: 24,
-    zone: "bathroom",
-  },
-  {
-    id: "ASSET-P14-72ead8056cd16e35",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "interior",
-    title: "Чум · интерьер",
-    observation:
-      "Общий интерьер под радиальными рёбрами: кольцевой подвес, кровать, кухня, лестница и верхняя площадка.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-72ead8056cd16e35-1600.webp",
-    width: 1080,
-    height: 1080,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-72ead8056cd16e35-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 480,
-    caption: "Интерьер · общий вид",
-    order: 25,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-e4621c62cdb0ea33",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "detail",
-    title: "Чум · деталь",
-    observation:
-      "Деталь санузла: круглое зеркало и чаша раковины на округлой столешнице.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-e4621c62cdb0ea33-1600.webp",
-    width: 900,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-e4621c62cdb0ea33-480.webp",
-    thumbnailWidth: 270,
-    thumbnailHeight: 480,
-    caption: "Санузел · зеркало и раковина",
-    order: 26,
-    zone: "bathroom",
-  },
-  {
-    id: "ASSET-P14-9d532349939eb33a",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "interior",
-    title: "Чум · интерьер",
-    observation:
-      "Стол и кресла у изогнутого панорамного остекления; радиальный потолок и лес.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-9d532349939eb33a-1600.webp",
-    width: 1067,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-9d532349939eb33a-480.webp",
-    thumbnailWidth: 320,
-    thumbnailHeight: 480,
-    caption: "Обеденная зона · панорамное остекление",
-    order: 27,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-59d941c44f5fdc7f",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "interior",
-    title: "Чум · интерьер",
-    observation:
-      "Угловой ракурс санузла с унитазом, раковиной, круглым зеркалом и душем.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-59d941c44f5fdc7f-1600.webp",
-    width: 900,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-59d941c44f5fdc7f-480.webp",
-    thumbnailWidth: 270,
-    thumbnailHeight: 480,
-    caption: "Санузел · угловой ракурс",
-    order: 28,
-    zone: "bathroom",
-  },
-  {
-    id: "ASSET-P14-e24d0a788fd045e0",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "interior",
-    title: "Чум · интерьер",
-    observation:
-      "Изогнутая стена с фотоизображением человека и оленей; край кровати, стола и радиального потолка.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-e24d0a788fd045e0-1600.webp",
-    width: 1062,
-    height: 1062,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-e24d0a788fd045e0-480.webp",
-    thumbnailWidth: 480,
-    thumbnailHeight: 480,
-    caption: "Интерьер · оформление стены",
-    order: 29,
-    zone: "living",
-  },
-  {
-    id: "ASSET-P14-71e9316aa98f152c",
-    family: "Чум",
-    familySlug: "chum",
-    kind: "detail",
-    title: "Чум · деталь",
-    observation: "Прямой ракурс душевой ниши и соседних частей санузла.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-71e9316aa98f152c-1600.webp",
-    width: 900,
-    height: 1600,
-    thumbnail:
-      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-71e9316aa98f152c-480.webp",
-    thumbnailWidth: 270,
-    thumbnailHeight: 480,
-    caption: "Санузел · душевая зона",
-    order: 30,
+    order: 6,
     zone: "bathroom",
   },
   {
@@ -574,7 +461,8 @@ const galleryLibrary = [
     title: "Чум · экстерьер",
     observation:
       "Конусообразный объём, стеклянное основание, наклонные опоры и настил; лес, вода и отражение.",
-    image: "/glamping-preview/cinematic/assets/phase26-1r/client/chum-exterior-9165965406acdebe-1600.webp",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-exterior-9165965406acdebe-1600.webp",
     width: 896,
     height: 1195,
     thumbnail:
@@ -582,8 +470,127 @@ const galleryLibrary = [
     thumbnailWidth: 360,
     thumbnailHeight: 480,
     caption: "Экстерьер · у воды",
-    order: 31,
+    order: 1,
     zone: "exterior",
+  },
+  {
+    id: "ASSET-P14-72ead8056cd16e35",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "interior",
+    title: "Чум · интерьер",
+    observation:
+      "Общий интерьер под радиальными рёбрами: кольцевой подвес, кровать, кухня, лестница и верхняя площадка.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-72ead8056cd16e35-1600.webp",
+    width: 1080,
+    height: 1080,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-72ead8056cd16e35-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 480,
+    caption: "Интерьер · общий вид",
+    order: 2,
+    zone: "living",
+  },
+  {
+    id: "ASSET-P14-9d532349939eb33a",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "interior",
+    title: "Чум · интерьер",
+    observation:
+      "Стол и кресла у изогнутого панорамного остекления; радиальный потолок и лес.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-9d532349939eb33a-1600.webp",
+    width: 1067,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-9d532349939eb33a-480.webp",
+    thumbnailWidth: 320,
+    thumbnailHeight: 480,
+    caption: "Обеденная зона · панорамное остекление",
+    order: 3,
+    zone: "living",
+  },
+  {
+    id: "ASSET-P14-e24d0a788fd045e0",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "interior",
+    title: "Чум · интерьер",
+    observation:
+      "Изогнутая стена с фотоизображением человека и оленей; край кровати, стола и радиального потолка.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-e24d0a788fd045e0-1600.webp",
+    width: 1062,
+    height: 1062,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-e24d0a788fd045e0-480.webp",
+    thumbnailWidth: 480,
+    thumbnailHeight: 480,
+    caption: "Интерьер · оформление стены",
+    order: 4,
+    zone: "detail",
+  },
+  {
+    id: "ASSET-P14-e4621c62cdb0ea33",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "detail",
+    title: "Чум · деталь",
+    observation:
+      "Деталь санузла: круглое зеркало и чаша раковины на округлой столешнице.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-e4621c62cdb0ea33-1600.webp",
+    width: 900,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-e4621c62cdb0ea33-480.webp",
+    thumbnailWidth: 270,
+    thumbnailHeight: 480,
+    caption: "Санузел · зеркало и раковина",
+    order: 5,
+    zone: "bathroom",
+  },
+  {
+    id: "ASSET-P14-59d941c44f5fdc7f",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "interior",
+    title: "Чум · интерьер",
+    observation:
+      "Угловой ракурс санузла с унитазом, раковиной, круглым зеркалом и душем.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-59d941c44f5fdc7f-1600.webp",
+    width: 900,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-interior-59d941c44f5fdc7f-480.webp",
+    thumbnailWidth: 270,
+    thumbnailHeight: 480,
+    caption: "Санузел · угловой ракурс",
+    order: 6,
+    zone: "bathroom",
+  },
+  {
+    id: "ASSET-P14-6da810d1a767a8b1",
+    family: "Чум",
+    familySlug: "chum",
+    kind: "detail",
+    title: "Чум · деталь",
+    observation: "Санузел: душевая ниша и полотенца, часть унитаза.",
+    image:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-6da810d1a767a8b1-1600.webp",
+    width: 900,
+    height: 1600,
+    thumbnail:
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-6da810d1a767a8b1-480.webp",
+    thumbnailWidth: 270,
+    thumbnailHeight: 480,
+    caption: "Санузел · душевая ниша",
+    order: 7,
+    zone: "bathroom",
   },
 ];
 export default galleryLibrary;

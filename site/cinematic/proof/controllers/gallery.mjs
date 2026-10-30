@@ -121,7 +121,7 @@ export function mountGallery(root, owner, onReady) {
   };
   const srcset = (item) =>
     `${item.thumbnail} ${item.thumbnailWidth}w, ${item.image} ${item.width}w`;
-  const sizes = "(max-width:600px) 72vw, 62vw";
+  const sizes = "(max-width:600px) 92vw, 76vw";
   const pad = (number) => String(number).padStart(2, "0");
   const indexOf = (item) => familyItems(item.familySlug).indexOf(item);
   function neighbor(offset) {
@@ -622,7 +622,7 @@ export function mountGallery(root, owner, onReady) {
       if (!owner.alive) return;
       const anchors = [...gallery.querySelectorAll(".gallery-index-link")];
       if (
-        data.length !== 31 ||
+        data.length === 0 ||
         new Set(data.map((item) => item.id)).size !== data.length ||
         anchors.length !== data.length ||
         !anchors.every((anchor) =>
@@ -854,8 +854,7 @@ export function mountGallery(root, owner, onReady) {
       owner.listen(window, "popstate", restoreURL);
     })
     .catch(() => {
-      status.textContent =
-        "Компактный просмотр недоступен. Все 31 изображение доступны в полном индексе ниже.";
+      status.textContent = `Компактный просмотр недоступен. Все ${libraryData.length} изображений доступны в полном индексе ниже.`;
     });
   return () => {
     requestVersion++;

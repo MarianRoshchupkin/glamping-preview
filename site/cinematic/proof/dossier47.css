@@ -1,0 +1,60 @@
+/* The original architecture remains the primary fixed plane in both studies. */
+.atlas45-surface {
+  grid-template-columns: minmax(0, 64fr) minmax(0, 36fr);
+  width: min(1680px, calc(100% - 64px));
+  border: 0;
+}
+.atlas45-visual {
+  height: min(820px, calc(100svh - 66px));
+  min-height: 620px;
+  padding: clamp(24px, 3vw, 60px);
+  background: transparent;
+}
+.atlas45-visual img { max-height: none; }
+.atlas45-dialog-head { padding: 38px 28px 14px 12px; }
+.atlas45-dialog-head h3 { font-size: clamp(44px, 4.5vw, 80px); }
+.atlas45-dialog [data-atlas-content] { padding: 0 28px 26px 12px; }
+.atlas45-dialog .atlas45-detail { gap: 20px; }
+.atlas45-dialog .atlas44-description { font-size: 14px; line-height: 1.5; }
+.dossier47-art { width: 100%; margin: 0; }
+.dossier47-art img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  height: auto;
+  max-height: 24svh;
+  object-fit: contain;
+  background: #faf9f4;
+}
+.dossier47-art img[data-failed="true"] { object-fit: contain; }
+.dossier47-art figcaption {
+  margin-top: 7px;
+  font: 11px/1.5 Arial, sans-serif;
+  color: #465447;
+}
+.atlas45[data-dossier="b"] .atlas45-surface {
+  grid-template-columns: minmax(0, 61fr) minmax(0, 39fr);
+}
+.atlas45[data-dossier="b"] .dossier47-art { width: 90%; }
+.atlas45[data-dossier="b"] .dossier47-art:last-child { align-self: flex-end; width: 82%; }
+.dossier47-drawings { grid-column: 1 / -1; padding-block: 12px; font-size: 13px; }
+.dossier47-drawings summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.dossier47-drawings p { max-width: 75ch; margin-block: 8px 14px; }
+.dossier47-drawings a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 28px; }
+@media (max-width: 900px), (max-height: 599px) {
+  .atlas45-surface { width: calc(100% - 24px); }
+  .atlas45-visual { min-height: 0; height: clamp(190px, 33svh, 380px); padding: 18px; }
+  .atlas45-dialog-head { padding: 14px 20px 12px; }
+  .atlas45-dialog [data-atlas-content] { padding: 0 20px 24px; }
+  .atlas45-dialog .atlas45-detail { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 12px; }
+  .atlas45-dialog .atlas44-description { grid-column: 1 / -1; }
+  .dossier47-art img { max-height: none; }
+  .dossier47-art figcaption { font-size: 10px; }
+  .atlas45[data-dossier="b"] .dossier47-art { width: 100%; }
+  .atlas45[data-dossier="b"] .dossier47-art:last-child { width: 100%; padding-top: 24px; }
+}
+@media (max-width: 600px) {
+  .atlas45-dialog .atlas45-detail { grid-template-columns: 1fr; }
+  .dossier47-art img { max-height: 25svh; }
+  .atlas45[data-dossier="b"] .dossier47-art:last-child { width: 88%; justify-self: end; padding-top: 12px; }
+}

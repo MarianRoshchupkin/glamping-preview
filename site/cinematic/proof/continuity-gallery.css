@@ -1,4 +1,9 @@
 /* One projected envelope opens into the measured real gallery frame. */
+@media (min-width: 901px) {
+  .engineering-proof.final-website #engineering .continuity-outline path {
+    stroke-width: 2.25;
+  }
+}
 .engineering-proof.final-website {
   background: transparent;
 }

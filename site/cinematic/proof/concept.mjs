@@ -9,18 +9,18 @@ function mountFilm() {
     video = root.querySelector("video"),
     toggle = root.querySelector("#film-toggle"),
     status = root.querySelector("#film-status"),
-    engineering = document.querySelector("#engineering");
-  const reduced = matchMedia("(prefers-reduced-motion:reduce)"),
-    tall = matchMedia("(min-height:600px)");
+    atlas = document.querySelector("#families");
+  const reduced = matchMedia("(prefers-reduced-motion:reduce)");
   let composition, preparePhotos;
   let photosReady = false;
   let decodedTime = 0,
-    frameCallbacks = 0;
+    frameCallbacks = 0,
+    loops = 0;
   let visible = false,
     paused = false,
     failed = false,
     bridge = 0;
-  const eligible = () => !reduced.matches && tall.matches;
+  const eligible = () => !reduced.matches;
   function sync() {
     if (owner.alive && visible && eligible() && !failed) preparePhotos?.();
     const play =
@@ -31,8 +31,7 @@ function mountFilm() {
       !failed &&
       eligible() &&
       !document.hidden &&
-      bridge <= 0 &&
-      !video.ended;
+      bridge <= 0;
     toggle.hidden = !owner.alive || failed || !eligible() || bridge > 0;
     toggle.inert = toggle.hidden;
     toggle.setAttribute("aria-pressed", String(paused));
@@ -68,14 +67,10 @@ function mountFilm() {
     }
   }
   video.muted = true;
-  video.loop = false;
+  video.loop = true;
   function toggleMotion() {
     if (!eligible() || failed || bridge > 0) return;
     paused = !paused;
-    if (!paused && video.ended) {
-      video.currentTime = 0;
-      composition?.time(0);
-    }
     sync();
   }
   owner.listen(toggle, "click", toggleMotion);
@@ -88,10 +83,6 @@ function mountFilm() {
     root.dataset.ready = "true";
     delete root.dataset.playRejected;
   });
-  owner.listen(video, "ended", () => {
-    paused = true;
-    sync();
-  });
   owner.listen(video, "error", () => {
     failed = true;
     sync();
@@ -100,7 +91,6 @@ function mountFilm() {
   });
   owner.listen(document, "visibilitychange", sync);
   owner.listen(reduced, "change", sync);
-  owner.listen(tall, "change", sync);
   const observer = new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting && entry.intersectionRatio >= 0.45;
@@ -111,48 +101,12 @@ function mountFilm() {
   observer.observe(frame);
   const media = gsap.matchMedia();
   media.add(
-    "(prefers-reduced-motion:no-preference) and (min-height:600px)",
+    "(prefers-reduced-motion:no-preference)",
     () => {
       const field = document.createElement("div");
       field.className = "film-field";
-      const drawing = engineering
-        .querySelector(".paper-geometry")
-        .cloneNode(true);
-      drawing.setAttribute("class", "film-drawing");
-      drawing.setAttribute("aria-hidden", "true");
-      for (const node of [field, drawing])
-        node.setAttribute("aria-hidden", "true");
-      for (const node of drawing.querySelectorAll("[id]")) {
-        const id = node.id;
-        node.id = "film-" + id;
-        for (const ref of drawing.querySelectorAll(
-          "[fill],[stroke],[clip-path]",
-        )) {
-          for (const attr of ["fill", "stroke", "clip-path"]) {
-            if (ref.getAttribute(attr)?.includes("#" + id))
-              ref.setAttribute(
-                attr,
-                ref.getAttribute(attr).replaceAll("#" + id, "#film-" + id),
-              );
-          }
-        }
-      }
-      frame.append(field, drawing);
-      const measure = () => {
-        const source = engineering
-          .querySelector(".paper-base .geometry-frame")
-          .getBoundingClientRect();
-        const stage = engineering
-          .querySelector(".structural-stage")
-          .getBoundingClientRect();
-        gsap.set(drawing, {
-          autoRound: false,
-          left: source.left,
-          top: source.top - stage.top,
-          width: source.width,
-          height: source.height,
-        });
-      };
+      field.setAttribute("aria-hidden", "true");
+      frame.append(field);
       let tick, frameCallback, seek, pictureChange;
       let active = true;
       const pictureBreakpoint = matchMedia("(max-width:900px)");
@@ -184,21 +138,17 @@ function mountFilm() {
               title,
               {
                 opacity: 0,
-                clipPath: "inset(0 0 100% 0)",
-                y: 14,
-                scale: 0.985,
+                y: 12,
               },
               {
                 opacity: 1,
-                clipPath: "inset(0 0 0% 0)",
                 y: 0,
-                scale: 1,
-                duration: 0.65,
+                duration: 0.9,
               },
               start,
             );
           if (end < 22.5)
-            composition.to(title, { opacity: 0, duration: 0.35 }, end - 0.35);
+            composition.to(title, { opacity: 0, duration: 0.6 }, end - 0.6);
         }
         const reveals = [
           [root.querySelector(".reveal-amba"), 4.2, 7.5, "64%"],
@@ -269,22 +219,14 @@ function mountFilm() {
             .to(visual, { "--prepare": 0, duration: 0.8 }, start)
             .fromTo(
               layer,
-              { "--reveal-edge": "120%" },
-              { "--reveal-edge": "-20%", duration: 0.9, ease: "sine.inOut" },
+              { opacity: 0 },
+              { opacity: 1, duration: 1.15, ease: "sine.inOut" },
               start,
             )
-            .to(
-              layer,
-              { "--reveal-edge": "120%", duration: 0.75, ease: "sine.inOut" },
-              end - 0.75,
-            );
+            .to(layer, { opacity: 0, duration: 1, ease: "sine.inOut" }, end - 1);
         }
         composition
-          .to(
-            root.querySelector(".hero-shade"),
-            { opacity: 0.9, duration: 1 },
-            3,
-          )
+          .to(root.querySelector(".hero-shade"), { opacity: 0.9, duration: 1 }, 3)
           .to(
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 1 },
@@ -299,9 +241,28 @@ function mountFilm() {
             root.querySelector(".hero-shade"),
             { opacity: 1, duration: 0.8 },
             18.1,
+          )
+          // The opaque opening image covers the native decoder's loop boundary.
+          .to(
+            root.querySelector(".hero-house"),
+            { opacity: 1, duration: 1.2, ease: "sine.inOut" },
+            21.05,
+          )
+          .to(titles[4], { opacity: 0, duration: 0.65 }, 21.1)
+          .fromTo(
+            titles[0],
+            { opacity: 0, y: 12 },
+            { opacity: 1, y: 0, duration: 0.75, immediateRender: false },
+            21.5,
           );
+        let previousTime = video.currentTime;
         const render = (time) => {
           if (root.dataset.ready !== "true") return;
+          if (time < previousTime - 1) {
+            loops++;
+            cues.clear();
+          }
+          previousTime = time;
           for (const [layer, start] of reveals) {
             const img = layer.querySelector("img");
             if (img.complete && img.naturalWidth) ready.add(img);
@@ -328,49 +289,82 @@ function mountFilm() {
           const present = (_, metadata) => {
             decodedTime = metadata.mediaTime;
             frameCallbacks++;
-            render(decodedTime);
             frameCallback = video.requestVideoFrameCallback(present);
           };
           frameCallback = video.requestVideoFrameCallback(present);
-        } else gsap.ticker.add(tick);
+        }
+        // The 24 fps film must not quantize text and crossfades to decoded-frame steps.
+        gsap.ticker.add(tick);
         const handoff = gsap
           .timeline({ paused: true, defaults: { ease: "none" } })
           .fromTo(
             root.querySelector(".unified-copy"),
             { opacity: 1 },
-            { opacity: 0, duration: 0.22 },
+            { opacity: 0, duration: 0.4 },
             0,
           )
-          .fromTo(field, { opacity: 0 }, { opacity: 1, duration: 0.34 }, 0.44)
-          .fromTo(drawing, { opacity: 0 }, { opacity: 1, duration: 0.29 }, 0.61)
-          .set(drawing, { opacity: 1 }, 1);
+          .fromTo(field, { opacity: 0 }, { opacity: 1, duration: 0.08 }, 0)
+          .fromTo(
+            field,
+            { "--paper-edge": "120%" },
+            { "--paper-edge": "-20%", duration: 1 },
+            0,
+          );
         const update = (self) => {
           const previous = bridge;
           bridge = self.progress;
           root.dataset.bridge =
             bridge >= 1 ? "complete" : bridge > 0 ? "active" : "before";
-          document.body.dataset.filmHandoff = String(bridge > 0 && bridge < 1);
           if (previous <= 0 !== bridge <= 0) sync();
-          handoff.progress(bridge);
         };
-        measure();
         ScrollTrigger.create({
-          id: "phase2938-film-xray",
-          trigger: engineering,
-          start: "top bottom",
-          end: "top top",
+          id: "phase2945-hero-atlas",
+          animation: handoff,
+          scrub: 0.25,
+          trigger: root,
+          start: () => "top top-=" + innerHeight * 0.12,
+          end: "bottom top",
           onUpdate: update,
-          onRefresh: (self) => {
-            measure();
-            update(self);
-          },
+          onRefresh: update,
         });
+        gsap.fromTo(
+          atlas.querySelector(".atlas44-heading"),
+          { y: 16 },
+          {
+            y: 0,
+            ease: "none",
+            scrollTrigger: {
+              id: "phase2945-atlas-heading",
+              trigger: atlas,
+              start: "top bottom",
+              end: "top 18%",
+              scrub: true,
+            },
+          },
+        );
+        gsap.fromTo(
+          atlas.querySelectorAll(".atlas44-index img"),
+          { opacity: 0.28, y: 24 },
+          {
+            opacity: 1,
+            y: 0,
+            stagger: 0.06,
+            ease: "none",
+            scrollTrigger: {
+              id: "phase2945-atlas-entry",
+              trigger: atlas,
+              start: "top bottom",
+              end: "top 18%",
+              scrub: true,
+            },
+          },
+        );
         ScrollTrigger.create({
           id: "phase2938-film-immersive",
           trigger: root,
           start: "top top",
-          endTrigger: engineering,
-          end: "top top",
+          endTrigger: root,
+          end: "bottom top",
           onToggle: (self) => {
             document.body.dataset.filmImmersive = String(self.isActive);
           },
@@ -395,7 +389,7 @@ function mountFilm() {
         preparePhotos = undefined;
         photosReady = false;
         delete root.dataset.enhanced;
-        for (const node of [field, drawing]) node.remove();
+        field.remove();
         bridge = 0;
         delete root.dataset.bridge;
         delete document.body.dataset.filmHandoff;
@@ -433,10 +427,12 @@ function mountFilm() {
             compositionTime: composition?.time() ?? 0,
             decodedTime,
             frameCallbacks,
-            frameSync:
-              "requestVideoFrameCallback" in video
-                ? "decoded-frame"
-                : "ticker-fallback",
+            loops,
+            loop: video.loop,
+            duration: video.duration,
+            timelineCount: gsap.globalTimeline.getChildren(false).length,
+            frameSync: "video-clock-display-ticker",
+            decodedFrameTracking: "requestVideoFrameCallback" in video,
             triggers: ScrollTrigger.getAll().map((t) => t.vars.id),
           };
         },

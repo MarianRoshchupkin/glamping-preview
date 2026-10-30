@@ -1,30 +1,6 @@
-.cover-header .version-switch {
-  display: flex;
-  flex: 0 0 auto;
-  gap: 0;
-  padding: 2px;
-  border: 1px solid #ffffff70;
-  border-radius: 4px;
-  color: #fff;
-  background: #10241de6;
-  font: 400 12px/1.1 Arial, sans-serif;
-}
-.cover-header .version-switch a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 44px;
-  padding: 0 10px;
-  border-radius: 2px;
-}
-.cover-header .version-switch [aria-current="page"] {
-  color: #24332b;
-  background: #f1efe7;
-}
-.cover-header .version-switch a:focus-visible {
-  outline: 2px solid #fff;
-  outline-offset: 3px;
-}
+/* Logo and navigation share the header; the new experience has one route. */
+.cover-header { justify-content: space-between; }
+.cover-header .cover-desktop { margin-left: auto; }
 .image-credits {
   padding: 16px var(--gutter) 28px;
   color: #3d493f;
@@ -54,11 +30,7 @@
     grid-template-columns: 1fr auto;
     gap: 10px 16px;
   }
-  .cover-header .version-switch {
-    grid-column: 1 / -1;
-    justify-self: start;
-  }
-  .cover-header .cover-menu { grid-column: 2; grid-row: 1; }
+    .cover-header .cover-menu { grid-column: 2; grid-row: 1; }
 }
 .photo-cover .cover-copy h1 {
   font:

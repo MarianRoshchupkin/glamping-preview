@@ -1,4 +1,0 @@
-:HL["/glamping-preview/_next/static/chunks/2djsrkhkpyt_h.css","style"]
-:HL["/glamping-preview/_next/static/chunks/3qytjikgadzqy.css?v=2937","style"]
-1:[["children",{"s":"__PAGE__","h":160}]]
-0:{"b":"I-lZ01OuuS_34TbRdKYe1","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
