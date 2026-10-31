@@ -27,6 +27,17 @@
   background: #faf9f4;
 }
 .dossier47-art img[data-failed="true"] { object-fit: contain; }
+/* Chum: preserve the full square + portrait compositions in the dossier. */
+.atlas45-detail[data-family-name="Чум"] .dossier47-art img {
+  width: auto;
+  max-width: 100%;
+  aspect-ratio: auto;
+  max-height: 35svh;
+  margin-inline: auto;
+}
+@media (max-width: 600px) {
+  .atlas45-detail[data-family-name="Чум"] .dossier47-art img { max-height: 40svh; }
+}
 .dossier47-art figcaption {
   margin-top: 7px;
   font: 11px/1.5 Arial, sans-serif;
