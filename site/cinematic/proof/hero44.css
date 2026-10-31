@@ -1,4 +1,12 @@
 /* A complete architectural subject over house-free crops of its own environment. */
+.cover-header .wordmark {
+  max-width: min(60vw, 680px);
+  font-size: clamp(17px, 2vw, 27px);
+  line-height: 1.15;
+}
+.unified-hero .accent-house {
+  font-size: clamp(50px, 12.5vw, 228px);
+}
 .hero-house.hero-composition {
   margin: 0;
   overflow: clip;
