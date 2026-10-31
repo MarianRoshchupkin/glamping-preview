@@ -116,6 +116,7 @@ export function mountGallery(root, owner, onReady) {
   const firstFrame = (slug) => {
     const items = familyItems(slug);
     return (
+      items.find((item) => item.primary) ||
       items.find((item) => item.id === "ASSET-P14-f39afb84347024ce") || items[0]
     );
   };

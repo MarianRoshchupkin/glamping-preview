@@ -87,7 +87,7 @@ function mountAtlas() {
     setState("preparing");
     content.replaceChildren(source.cloneNode(true));
     title.textContent = source.dataset.familyName;
-    const card = family.querySelector("img");
+    const card = family.querySelector('img[data-primary="true"]') || family.querySelector("img");
     // The decoded card is the stable poster; sharpen only after the plane settles.
     image.src = card.currentSrc || card.src;
     image.alt = card.alt;
