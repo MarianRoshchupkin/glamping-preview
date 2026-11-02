@@ -128,3 +128,10 @@
     animation: none;
   }
 }
+
+/* Keep the changing document code in a fixed two-line slot at narrow grid widths. */
+#active-document-code { min-block-size: 2lh; }
+.document-row .document-toggle { transition: transform 220ms ease; }
+@media (prefers-reduced-motion: reduce) {
+  .document-row .document-toggle { transition: none; }
+}
