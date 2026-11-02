@@ -28,7 +28,7 @@
 }
 .dossier47-art img[data-failed="true"] { object-fit: contain; }
 /* Chum: preserve the full square + portrait compositions in the dossier. */
-.atlas45-detail[data-family-name="Чум"] .dossier47-art img {
+.atlas45-detail[data-family-name="Яранга"] .dossier47-art img {
   width: auto;
   max-width: 100%;
   aspect-ratio: auto;
@@ -36,7 +36,7 @@
   margin-inline: auto;
 }
 @media (max-width: 600px) {
-  .atlas45-detail[data-family-name="Чум"] .dossier47-art img { max-height: 40svh; }
+  .atlas45-detail[data-family-name="Яранга"] .dossier47-art img { max-height: 40svh; }
 }
 .dossier47-art figcaption {
   margin-top: 7px;

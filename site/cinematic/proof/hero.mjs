@@ -12,7 +12,7 @@ export function mountHero(owner) {
         ["РИТМ", "ФАСАДА."],
         ["ЛИНИЯ", "КРОВЛИ."],
       ]
-    : [["ЧУМ."], ["АМБА."], ["ЛИНИЯ", "КРОВЛИ."]];
+    : [["ЯРАНГА."], ["АМБА."], ["ЛИНИЯ", "КРОВЛИ."]];
   function setHeading(index) {
     heading.replaceChildren(
       ...titles[index].map((word) => {
@@ -104,7 +104,7 @@ export function mountHero(owner) {
       status.setAttribute("aria-live", manual ? "polite" : "off");
       status.textContent =
         index === 0
-          ? "Чум · экстерьер у воды, лес и отражение"
+          ? "Яранга · экстерьер у воды, лес и отражение"
           : "Амба · экстерьер в лесу";
     } catch {
       stop();

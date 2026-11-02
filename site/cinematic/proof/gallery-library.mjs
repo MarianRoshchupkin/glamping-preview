@@ -456,10 +456,10 @@ const galleryLibrary = [
   {
     id: "ASSET-P14-9165965406acdebe",
     primary: true,
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "exterior",
-    title: "Чум · экстерьер",
+    title: "Яранга · экстерьер",
     observation:
       "Конусообразный объём, стеклянное основание, наклонные опоры и настил; лес, вода и отражение.",
     image:
@@ -476,10 +476,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-72ead8056cd16e35",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "interior",
-    title: "Чум · интерьер",
+    title: "Яранга · интерьер",
     observation:
       "Общий интерьер под радиальными рёбрами: кольцевой подвес, кровать, кухня, лестница и верхняя площадка.",
     image:
@@ -496,10 +496,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-9d532349939eb33a",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "interior",
-    title: "Чум · интерьер",
+    title: "Яранга · интерьер",
     observation:
       "Стол и кресла у изогнутого панорамного остекления; радиальный потолок и лес.",
     image:
@@ -516,10 +516,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-e24d0a788fd045e0",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "interior",
-    title: "Чум · интерьер",
+    title: "Яранга · интерьер",
     observation:
       "Изогнутая стена с фотоизображением человека и оленей; край кровати, стола и радиального потолка.",
     image:
@@ -536,10 +536,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-e4621c62cdb0ea33",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "detail",
-    title: "Чум · деталь",
+    title: "Яранга · деталь",
     observation:
       "Деталь санузла: круглое зеркало и чаша раковины на округлой столешнице.",
     image:
@@ -556,10 +556,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-59d941c44f5fdc7f",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "interior",
-    title: "Чум · интерьер",
+    title: "Яранга · интерьер",
     observation:
       "Угловой ракурс санузла с унитазом, раковиной, круглым зеркалом и душем.",
     image:
@@ -576,10 +576,10 @@ const galleryLibrary = [
   },
   {
     id: "ASSET-P14-6da810d1a767a8b1",
-    family: "Чум",
+    family: "Яранга",
     familySlug: "chum",
     kind: "detail",
-    title: "Чум · деталь",
+    title: "Яранга · деталь",
     observation: "Санузел: душевая ниша и полотенца, часть унитаза.",
     image:
       "/glamping-preview/cinematic/assets/phase26-1r/client/chum-detail-6da810d1a767a8b1-1600.webp",
