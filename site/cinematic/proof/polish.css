@@ -203,3 +203,39 @@
     gap: 2px;
   }
 }
+
+/* Official support marks retain their full artwork and the FSI protective padding. */
+#contacts .fsi-support {
+  display: grid;
+  width: 540px;
+  max-width: 100%;
+  min-width: 0;
+  align-self: start;
+  gap: 20px;
+}
+#contacts .support-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+}
+#contacts .platform-mark {
+  display: block;
+  width: 240px;
+  max-width: 100%;
+  padding: 16px;
+}
+#contacts .platform-mark img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+#contacts .support-copy {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+}
+@media (max-width: 900px) {
+  #contacts .support-logos { justify-content: center; }
+}
