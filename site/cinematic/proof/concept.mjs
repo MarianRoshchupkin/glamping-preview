@@ -13,6 +13,7 @@ function mountFilm() {
   const reduced = matchMedia("(prefers-reduced-motion:reduce)");
   let composition, preparePhotos;
   let photosReady = false;
+  let fontReady = document.fonts.check("16px VanArkel");
   let decodedTime = 0,
     frameCallbacks = 0,
     loops = 0;
@@ -27,6 +28,7 @@ function mountFilm() {
       owner.alive &&
       visible &&
       photosReady &&
+      fontReady &&
       !paused &&
       !failed &&
       eligible() &&
@@ -91,6 +93,10 @@ function mountFilm() {
   });
   owner.listen(document, "visibilitychange", sync);
   owner.listen(reduced, "change", sync);
+  document.fonts.load("16px VanArkel").catch(() => {}).finally(() => {
+    fontReady = true;
+    sync();
+  });
   const observer = new IntersectionObserver(
     ([entry]) => {
       visible = entry.isIntersecting && entry.intersectionRatio >= 0.45;

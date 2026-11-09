@@ -152,17 +152,34 @@
 }
 #documentation .document-list {
   margin: 0 0 15px;
-  padding-inline-start: 1.2em;
-  font-size: 15px;
-  line-height: 1.6;
+  padding-inline-start: 1.1em;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #465447;
+  list-style-type: "–  ";
 }
+#documentation .document-list li { padding-left: 4px; margin-block: 4px; }
+#documentation .document-list li::marker { color: #7b8878; }
+/* Bound the reserved panel height without removing any album contents. */
+#documentation .document-row > div {
+  max-height: min(72svh, 760px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  scrollbar-gutter: stable;
+}
+#documentation .document-row > div:focus-visible {
+  outline: 2px solid #65765d;
+  outline-offset: -2px;
+}
+#documentation .document-row p { line-height: 1.55; margin-bottom: 12px; }
+#documentation { padding-bottom: 36px; }
 #contacts {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: end;
   gap: 40px;
 }
-#contacts .contact-copy { min-width: 0; }
+#contacts .contact-copy { min-width: 0; align-self: stretch; }
 #contacts .contact-copy > h2 {
   max-width: 36ch;
   margin: 0 0 8px;

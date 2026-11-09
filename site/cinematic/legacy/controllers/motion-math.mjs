@@ -168,13 +168,19 @@ export const registrationInkAt = (paper) =>
     ? [255, 255, 255]
     : [38, 61, 71].map((value) => value * smooth(range(paper, 0.6, 1)));
 
-// Remove only the assembled prelude; all later poses retain their original scroll distance.
+// Give the blue exploded view 80svh more scroll; later phases keep their distance.
 export function structureProgressAt(scrollProgress, mobile = false) {
   const entry = mobile ? 0.16 : 0.18,
-    distance = clamp(scrollProgress) * (entry + 4.6 * (1 - 0.2925));
+    distance = clamp(scrollProgress) * (entry + 4.6 * (1 - 0.2925) + 0.8),
+    explodedStart = entry + (0.32 - 0.2925) * 4.6,
+    explodedEnd = explodedStart + (0.57 - 0.32) * 7.8;
   return distance < entry
     ? (distance / entry) * 0.2925
-    : 0.2925 + (distance - entry) / 4.6;
+    : distance < explodedStart
+      ? 0.2925 + (distance - entry) / 4.6
+      : distance < explodedEnd
+        ? 0.32 + (distance - explodedStart) / 7.8
+        : 0.57 + (distance - explodedEnd) / 4.6;
 }
 export function structureScrollAt(progress, mobile = false) {
   const entry = mobile ? 0.16 : 0.18,
@@ -182,7 +188,7 @@ export function structureScrollAt(progress, mobile = false) {
   return (
     (logical < 0.2925
       ? (logical / 0.2925) * entry
-      : entry + (logical - 0.2925) * 4.6) /
-    (entry + 4.6 * (1 - 0.2925))
+      : entry + (logical - 0.2925) * 4.6 + 0.8 * range(logical, 0.32, 0.57)) /
+    (entry + 4.6 * (1 - 0.2925) + 0.8)
   );
 }

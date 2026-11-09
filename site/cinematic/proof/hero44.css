@@ -12,6 +12,39 @@
   overflow: clip;
   background: #e3ded6;
 }
+.hero-house.hero-water {
+  background: #343d37;
+}
+.hero-water::before {
+  display: none;
+}
+.hero-house.hero-water .hero-subject {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: none;
+  object-fit: cover;
+  object-position: 50% 60%;
+  mask-image: none;
+}
+.accent-house > span {
+  transition: opacity 600ms ease;
+}
+html[data-hero-font="loading"] .accent-house > span {
+  opacity: 0;
+}
+@media (min-width: 901px) {
+  .hero-house.hero-water .hero-subject {
+    left: 63%;
+    width: auto;
+    transform: translateX(-50%);
+    object-fit: contain;
+    mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .accent-house > span { transition: none; }
+}
 .hero-composition::before,
 .reveal-khamoran::before {
   content: "";
