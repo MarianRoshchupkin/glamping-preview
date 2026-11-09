@@ -463,9 +463,9 @@ const galleryLibrary = [
     observation:
       "Конусообразный объём, стеклянное основание, наклонные опоры и настил; лес, вода и отражение.",
     image:
-      "/glamping-preview/cinematic/assets/chum_primary_reference.jpg",
-    width: 7467,
-    height: 9958,
+      "/glamping-preview/cinematic/assets/phase26-1r/client/chum-exterior-9165965406acdebe-1600.webp",
+    width: 896,
+    height: 1195,
     thumbnail:
       "/glamping-preview/cinematic/assets/phase26-1r/client/chum-exterior-9165965406acdebe-480.webp",
     thumbnailWidth: 360,

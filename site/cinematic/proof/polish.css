@@ -100,6 +100,9 @@
   border-block: 0;
 }
 #documentation {
+  /* The transparent engineering track overlaps this chapter after the gallery handoff. */
+  position: relative;
+  z-index: 1;
   padding-top: clamp(48px, 6vw, 100px);
   padding-bottom: clamp(40px, 4vw, 72px);
 }
@@ -156,10 +159,24 @@
 #contacts {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
+  align-items: end;
   gap: 40px;
 }
 #contacts .contact-copy { min-width: 0; }
+#contacts .contact-copy > h2 {
+  max-width: 36ch;
+  margin: 0 0 8px;
+  font-size: clamp(20px, 2vw, 28px);
+  line-height: 1.4;
+}
+#contacts .contact-phone {
+  display: block;
+  width: fit-content;
+  min-height: 44px;
+  padding-block: 8px;
+  color: #24332b;
+  font-size: 24px;
+}
 #contacts .contact-email {
   display: inline-block;
   max-width: 100%;
@@ -176,10 +193,22 @@
   line-height: 1.6;
 }
 #contacts .contact-requisites h3 {
-  margin-bottom: 12px;
+  margin: 0;
   color: #24332b;
   font-size: 20px;
 }
+#contacts .contact-requisites > summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+  gap: 20px;
+  padding-block: 10px;
+  border-block: 1px solid #aeb9aa;
+  cursor: pointer;
+}
+#contacts .contact-requisites[open] > summary { margin-bottom: 16px; }
+#contacts .contact-requisites[open] .document-toggle { transform: rotate(45deg); }
 #contacts .contact-company { margin-bottom: 16px; }
 #contacts .contact-requisites dl { margin: 0; }
 #contacts .contact-requisites dl > div {
@@ -194,6 +223,8 @@
   overflow-wrap: anywhere;
 }
 @media (max-width: 900px) {
+  #documentation { display: block; }
+  #documentation .document-rows { margin-top: 25px; }
   #contacts { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
@@ -210,7 +241,7 @@
   width: 540px;
   max-width: 100%;
   min-width: 0;
-  align-self: start;
+  align-self: end;
   gap: 20px;
 }
 #contacts .support-logos {
@@ -239,3 +270,30 @@
 @media (max-width: 900px) {
   #contacts .support-logos { justify-content: center; }
 }
+
+/* The native index remains the complete fallback until gallery enhancement succeeds. */
+.compact-gallery[data-enhanced="true"] #gallery-index { display: none; }
+#families .atlas31-description {
+  order: 3;
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+#documentation .document-previews {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-block: 20px;
+}
+#documentation .document-previews img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #d6d9ce;
+}
+#documentation .document-expanded {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #aeb9aa;
+}
+#documentation .document-expanded h3 { margin-bottom: 12px; font-size: 18px; }

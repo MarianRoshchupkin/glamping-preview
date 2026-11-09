@@ -52,6 +52,14 @@
 .dossier47-drawings summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
 .dossier47-drawings p { max-width: 75ch; margin-block: 8px 14px; }
 .dossier47-drawings a { display: inline-flex; align-items: center; min-height: 44px; margin-right: 28px; }
+.dossier31-variants { grid-column: 1 / -1; width: 100%; }
+.atlas45-reference > summary > h3 { display: inline; font: inherit; letter-spacing: inherit; }
+.dossier31-variant { padding-block: 16px; border-top: 1px solid #bbc2b5; }
+.dossier31-variant h4 { margin-bottom: 12px; font-size: 18px; }
+.dossier31-variant dl { margin: 0; font-size: 13px; line-height: 1.6; }
+.dossier31-variant dl > div { display: flex; justify-content: space-between; gap: 16px; }
+.dossier31-variant dd { margin: 0; text-align: right; }
+.dossier31-variant p { margin-top: 12px; font-size: 13px; line-height: 1.6; }
 @media (max-width: 900px), (max-height: 599px) {
   .atlas45-surface { width: calc(100% - 24px); }
   .atlas45-visual { min-height: 0; height: clamp(190px, 33svh, 380px); padding: 18px; }
