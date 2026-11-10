@@ -95,22 +95,17 @@
   min-width: 0;
 }
 .origins45-number {
-  font:
-    11px/1.5 Arial,
-    sans-serif;
-  letter-spacing: 0.12em;
+  font: var(--type-caption)/1.5 var(--font-body);
+  letter-spacing: 0.08em;
   margin: 0 0 10px;
 }
 .origins45-step h3 {
-  font:
-    400 clamp(30px, 3vw, 52px)/1.12 VanArkel,
-    Georgia,
-    serif;
+  font: 400 var(--type-subheading)/var(--leading-heading) var(--font-heading);
   margin: 0 0 14px;
 }
 .origins45-step > p:last-child {
-  font-size: clamp(15px, 1.08vw, 18px);
-  line-height: 1.5;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
   margin: 0;
 }
 /* A fixed overlap makes sticky release and timeline end coincide at 200svh. */
@@ -209,12 +204,7 @@
     padding-top: 6px;
   }
   .origins45-step h3 {
-    font-size: 32px;
     margin-bottom: 10px;
-  }
-  .origins45-step > p:last-child {
-    font-size: 15px;
-    line-height: 1.5;
   }
 }
 @media (prefers-reduced-motion: reduce) {

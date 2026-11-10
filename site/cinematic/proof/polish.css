@@ -132,8 +132,8 @@
   }
 }
 
-/* Keep the changing document code in a fixed two-line slot at narrow grid widths. */
-#active-document-code { min-block-size: 2lh; }
+/* Reserve only the label line; narrow layouts can wrap the combined code. */
+#active-document-code { min-block-size: 1lh; }
 .document-row .document-toggle { transition: transform 220ms ease; }
 @media (prefers-reduced-motion: reduce) {
   .document-row .document-toggle { transition: none; }
@@ -142,48 +142,38 @@
 #families .atlas44-heading > p {
   max-width: 60ch;
   margin-top: 20px;
-  line-height: 1.6;
+  line-height: var(--leading-body);
 }
 #families .atlas44-index-note {
   order: 2;
   margin-top: 6px;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
+  color: var(--text-muted);
 }
 #documentation .document-list {
   margin: 0 0 15px;
   padding-inline-start: 1.1em;
-  font-size: 14px;
-  line-height: 1.55;
-  color: #465447;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  color: var(--text-muted);
   list-style-type: "–  ";
 }
 #documentation .document-list li { padding-left: 4px; margin-block: 4px; }
 #documentation .document-list li::marker { color: #7b8878; }
-/* Bound the reserved panel height without removing any album contents. */
-#documentation .document-row > div {
-  max-height: min(72svh, 760px);
-  overflow-y: auto;
-  overscroll-behavior-y: contain;
-  scrollbar-gutter: stable;
-}
-#documentation .document-row > div:focus-visible {
-  outline: 2px solid #65765d;
-  outline-offset: -2px;
-}
-#documentation .document-row p { line-height: 1.55; margin-bottom: 12px; }
+#documentation .document-row p { line-height: var(--leading-body); margin-bottom: 12px; }
 #documentation { padding-bottom: 36px; }
 #contacts {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: end;
+  align-items: start;
   gap: 40px;
 }
-#contacts .contact-copy { min-width: 0; align-self: stretch; }
+#contacts .contact-copy { min-width: 0; }
 #contacts .contact-copy > h2 {
   max-width: 36ch;
   margin: 0 0 8px;
-  font-size: clamp(20px, 2vw, 28px);
+  font-size: clamp(24px, 2vw, 32px);
   line-height: 1.4;
 }
 #contacts .contact-phone {
@@ -206,8 +196,8 @@
 #contacts .contact-requisites {
   max-width: 80ch;
   margin-top: 24px;
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
 }
 #contacts .contact-requisites h3 {
   margin: 0;
@@ -224,7 +214,7 @@
   border-block: 1px solid #aeb9aa;
   cursor: pointer;
 }
-#contacts .contact-requisites[open] > summary { margin-bottom: 16px; }
+#contacts .contact-requisites-content { padding-top: 16px; }
 #contacts .contact-requisites[open] .document-toggle { transform: rotate(45deg); }
 #contacts .contact-company { margin-bottom: 16px; }
 #contacts .contact-requisites dl { margin: 0; }
@@ -241,11 +231,11 @@
 }
 @media (max-width: 900px) {
   #documentation { display: block; }
+  #active-document-code { min-block-size: 2lh; }
   #documentation .document-rows { margin-top: 25px; }
   #contacts { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 600px) {
-  #documentation .document-list { font-size: 13px; }
   #contacts .contact-requisites dl > div {
     grid-template-columns: minmax(0, 1fr);
     gap: 2px;
@@ -258,7 +248,7 @@
   width: 540px;
   max-width: 100%;
   min-width: 0;
-  align-self: end;
+  align-self: start;
   gap: 20px;
 }
 #contacts .support-logos {
@@ -281,8 +271,8 @@
 }
 #contacts .support-copy {
   margin: 0;
-  font-size: 14px;
-  line-height: 1.65;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
 }
 @media (max-width: 900px) {
   #contacts .support-logos { justify-content: center; }
@@ -293,8 +283,8 @@
 #families .atlas31-description {
   order: 3;
   margin-top: 8px;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
 }
 #documentation .document-previews {
   display: grid;
@@ -313,4 +303,4 @@
   padding-top: 20px;
   border-top: 1px solid #aeb9aa;
 }
-#documentation .document-expanded h3 { margin-bottom: 12px; font-size: 18px; }
+#documentation .document-expanded h3 { margin-bottom: 12px; font-size: 20px; line-height: 1.35; }

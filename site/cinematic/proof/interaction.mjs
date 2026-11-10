@@ -25,8 +25,7 @@ owner.listen(document, "click", async (event) => {
   event.preventDefault();
   await gallery.openSource(link.href, link);
 });
-const rows = [...document.querySelectorAll("[data-document]")];
-const documentRows = document.querySelector(".document-rows");
+const rows = [...document.querySelectorAll("[data-document], .contact-requisites")];
 const reduced = matchMedia("(prefers-reduced-motion: reduce)");
 const states = rows.map((row) => ({
   row,
@@ -38,11 +37,12 @@ const states = rows.map((row) => ({
   overflow: row.style.overflow,
   animation: undefined,
 }));
+const documentStates = states.filter((state) => state.row.hasAttribute("data-document"));
 function currentDocument() {
   const output = document.querySelector("#active-document-code");
   output.hidden = false;
   output.textContent =
-    states.find((state) => state.expanded)?.row.dataset.document ??
+    documentStates.find((state) => state.expanded)?.row.dataset.document ??
     "АР / КР / ИР";
 }
 function settle(state) {
@@ -79,70 +79,66 @@ function expand(state, expanded) {
     })
     .catch(() => {});
 }
-// Reserve the largest single panel so changing rows cannot clamp bottom-of-page scroll.
-const originalMinHeight = documentRows.style.minHeight;
-let measuredWidth = 0;
-function reserveDocumentHeight() {
-  if (!owner.alive) return;
-  states.forEach(settle);
-  const width = documentRows.getBoundingClientRect().width;
-  measuredWidth = width;
-  const measure = documentRows.cloneNode(true);
-  measure.inert = true;
-  measure.setAttribute("aria-hidden", "true");
-  Object.assign(measure.style, {
-    position: "absolute",
-    top: "0",
-    left: "0",
-    visibility: "hidden",
-    pointerEvents: "none",
-    width: `${width}px`,
-    minHeight: "0",
-    height: "auto",
-  });
-  [...measure.children].forEach((row) => {
-    row.removeAttribute("name");
-    row.open = true;
-  });
-  documentRows.after(measure);
-  let summaries = 0;
-  let tallest = 0;
-  [...measure.children].forEach((row) => {
-    const contentHeight = row
-      .querySelector(":scope > div")
-      .getBoundingClientRect().height;
-    summaries += row.getBoundingClientRect().height - contentHeight;
-    tallest = Math.max(tallest, contentHeight);
-  });
-  measure.remove();
-  documentRows.style.minHeight = `${Math.ceil(summaries + tallest)}px`;
+let anchorFrame = 0;
+let previousAnchoring;
+function stopAnchor() {
+  cancelAnimationFrame(anchorFrame);
+  anchorFrame = 0;
+  if (previousAnchoring !== undefined) {
+    document.documentElement.style.overflowAnchor = previousAnchoring;
+    previousAnchoring = undefined;
+  }
+}
+function anchorSummary(summary) {
+  stopAnchor();
+  const root = document.documentElement;
+  previousAnchoring ??= root.style.overflowAnchor;
+  root.style.overflowAnchor = "none";
+  let previousTop = summary.getBoundingClientRect().top + scrollY;
+  // Compensate only structural movement above the clicked heading; wheel input stays native.
+  function keepAnchor() {
+    const top = summary.getBoundingClientRect().top + scrollY;
+    const delta = top - previousTop;
+    const before = scrollY;
+    if (Math.abs(delta) > 0.1) scrollBy({ top: delta, behavior: "instant" });
+    previousTop = top - (delta - (scrollY - before));
+    if (states.some((state) => state.animation)) {
+      anchorFrame = requestAnimationFrame(keepAnchor);
+    } else {
+      root.style.overflowAnchor = previousAnchoring;
+      previousAnchoring = undefined;
+      anchorFrame = 0;
+    }
+  }
+  return keepAnchor;
 }
 states.forEach((state) => {
   // The native name group would hide a closing row before its animation finishes.
   state.row.removeAttribute("name");
   owner.listen(state.summary, "click", (event) => {
     event.preventDefault();
+    const keepAnchor = anchorSummary(state.summary);
     const expanded = !state.expanded;
-    states.forEach((item) => expand(item, item === state && expanded));
+    const group = documentStates.includes(state) ? documentStates : [state];
+    group.forEach((item) => expand(item, item === state && expanded));
     currentDocument();
+    keepAnchor();
   });
 });
 currentDocument();
-reserveDocumentHeight();
-const documentResize = new ResizeObserver(([entry]) => {
-  if (Math.abs(entry.contentRect.width - measuredWidth) > 0.5)
-    reserveDocumentHeight();
-});
-documentResize.observe(documentRows);
-document.fonts.ready.then(reserveDocumentHeight);
-owner.listen(reduced, "change", () => states.forEach(settle));
+function settleLayout() {
+  // Full motion/viewport remounts own their new geometry, not the old click anchor.
+  stopAnchor();
+  states.forEach(settle);
+}
+owner.listen(window, "resize", settleLayout);
+owner.listen(reduced, "change", settleLayout);
 owner.cleanup(() => {
-  documentResize.disconnect();
+  stopAnchor();
   states.forEach((state) => {
     settle(state);
     if (state.name !== null) state.row.setAttribute("name", state.name);
   });
-  documentRows.style.minHeight = originalMinHeight;
 });
 owner.listen(window, "pagehide", (event) => {
   if (event.persisted) return;

@@ -33,13 +33,13 @@
 html[data-hero-font="loading"] .accent-house > span {
   opacity: 0;
 }
-@media (min-width: 901px) {
+/* A panoramic viewport must not cut off the roof or the entrance platform. */
+@media (min-width: 901px) and (min-aspect-ratio: 43 / 20) {
   .hero-house.hero-water .hero-subject {
-    left: 63%;
-    width: auto;
+    left: 50%;
+    width: 215svh;
     transform: translateX(-50%);
-    object-fit: contain;
-    mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   }
 }
 @media (prefers-reduced-motion: reduce) {

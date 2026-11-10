@@ -29,7 +29,8 @@
   background: transparent;
   text-align: left;
   font-size: clamp(24px, 2.4vw, 40px);
-  line-height: 1;
+  font-family: var(--font-heading);
+  line-height: var(--leading-heading);
 }
 #projects .gallery-families button[aria-pressed="true"] {
   color: var(--gallery-ink);
@@ -37,7 +38,8 @@
   box-shadow: none;
 }
 #projects .gallery-families :is(.family-index, small) {
-  font-size: 10px;
+  font-size: var(--type-caption);
+  font-family: var(--font-body);
 }
 #projects .gallery-families img {
   width: 28px;
@@ -125,12 +127,13 @@
 }
 #projects #gallery-active-label {
   display: block;
-  font-size: 10px;
+  font-size: var(--type-caption);
 }
 #projects #gallery-active-caption {
   margin: 8px 0 0;
-  font-size: 12px;
-  line-height: 1.5;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
+  letter-spacing: normal;
 }
 #projects .gallery-open-mark {
   position: absolute;
@@ -138,7 +141,7 @@
   right: 0;
   padding: 8px 0;
   background: transparent;
-  font-size: 10px;
+  font-size: var(--type-caption);
   z-index: 2;
 }
 #projects .gallery-peers {
@@ -338,7 +341,6 @@
   }
   #projects .gallery-families .family-index {
     display: block;
-    font-size: 9px;
     margin-bottom: 6px;
   }
   #projects .gallery-families small {
@@ -379,15 +381,10 @@
     padding: 16px 0 0;
   }
   #projects #gallery-active-label {
-    font-size: 9px;
     padding-right: 60px;
-  }
-  #projects #gallery-active-caption {
-    font-size: 10px;
   }
   #projects .gallery-open-mark {
     bottom: -34px;
-    font-size: 8px;
   }
   #projects .gallery-peer {
     padding: 0;

@@ -7,15 +7,25 @@
   box-sizing: border-box;
 }
 html {
+  --font-brand: VanArkel, Georgia, serif;
+  --font-heading: Georgia, "Times New Roman", serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --type-section: clamp(32px, 4.2vw, 64px);
+  --type-title: clamp(36px, 4vw, 64px);
+  --type-subheading: clamp(24px, 2.4vw, 36px);
+  --type-body: 16px;
+  --type-small: 14px;
+  --type-caption: 12px;
+  --leading-body: 1.6;
+  --leading-heading: 1.12;
+  --text-muted: #465447;
   color: #24332b;
   background: #f1efe7;
   scroll-behavior: smooth;
 }
 body {
   margin: 0;
-  font:
-    16px/1.55 Arial,
-    sans-serif;
+  font: var(--type-body)/var(--leading-body) var(--font-body);
 }
 button,
 input,
@@ -81,7 +91,7 @@ figure {
 h1,
 h2,
 h3 {
-  font-family: Georgia, serif;
+  font-family: var(--font-heading);
   font-weight: 400;
 }
 h1 {
@@ -91,13 +101,13 @@ h1 {
   max-width: 1100px;
 }
 h2 {
-  font-size: clamp(38px, 4.2vw, 64px);
-  line-height: 1.08;
-  letter-spacing: -0.035em;
+  font-size: var(--type-section);
+  line-height: var(--leading-heading);
+  letter-spacing: -0.025em;
 }
 h3 {
-  font-size: 25px;
-  line-height: 1.18;
+  font-size: var(--type-subheading);
+  line-height: var(--leading-heading);
 }
 p {
   max-width: 65ch;
@@ -127,19 +137,15 @@ main {
   gap: 25px;
 }
 .wordmark {
-  font:
-    27px/1.2 VanArkel,
-    Georgia,
-    serif;
+  font: 27px/1.2 var(--font-brand);
   letter-spacing: 0.035em;
 }
 .mast-caption,
 .masthead > a:last-child,
 .folio,
 .eyebrow,
-figcaption,
-footer {
-  font-size: 11px;
+figcaption {
+  font-size: var(--type-caption);
   letter-spacing: 0.05em;
 }
 .mast-caption {
@@ -691,12 +697,12 @@ body[data-house="khamoran"]
   gap: 5%;
 }
 .documentation h2 {
-  font-size: 45px;
+  font-size: var(--type-section);
   margin: 20px 0;
 }
 .documentation > div > p:last-child {
-  font-size: 13px;
-  color: #52614f;
+  font-size: var(--type-small);
+  color: var(--text-muted);
 }
 .document-row {
   border-top: 1px solid #aeb9aa;
@@ -711,14 +717,11 @@ body[data-house="khamoran"]
   padding: 20px 0;
   cursor: pointer;
   font:
-    24px/1.35 Georgia,
-    serif;
+    400 clamp(20px, 1.7vw, 28px)/1.35 var(--font-heading);
   min-height: 78px;
 }
 .document-code {
-  font:
-    11px Arial,
-    sans-serif;
+  font: var(--type-caption) var(--font-body);
   letter-spacing: 0.08em;
   min-width: 40px;
 }
@@ -735,12 +738,12 @@ body[data-house="khamoran"]
   padding: 0 45px 26px 60px;
 }
 .document-row p {
-  font-size: 15px;
+  font-size: var(--type-body);
   margin-bottom: 15px;
 }
 .document-row .quiet {
-  font-size: 12px;
-  color: #52614f;
+  font-size: var(--type-small);
+  color: var(--text-muted);
 }
 footer {
   display: flex;
@@ -1252,13 +1255,13 @@ thead {
     padding: 30px 20px;
   }
   .documentation h2 {
-    font-size: 38px;
+    font-size: var(--type-section);
   }
   .document-rows {
     margin-top: 25px;
   }
   .document-row > summary {
-    font-size: 19px;
+    font-size: 20px;
     gap: 13px;
     min-height: 80px;
   }
@@ -1269,10 +1272,10 @@ thead {
     padding: 0 10px 22px 38px;
   }
   .document-row p {
-    font-size: 13px;
+    font-size: var(--type-body);
   }
   .document-row .quiet {
-    font-size: 11px;
+    font-size: var(--type-small);
   }
   .comparison {
     padding: 35px 20px;
