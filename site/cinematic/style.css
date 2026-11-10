@@ -689,62 +689,6 @@ body[data-house="khamoran"]
   max-width: 65ch;
   min-height: 65px;
 }
-.documentation {
-  padding: 45px 4vw 35px;
-  border-top: 1px solid #aeb9aa;
-  display: grid;
-  grid-template-columns: 29% 1fr;
-  gap: 5%;
-}
-.documentation h2 {
-  font-size: var(--type-section);
-  margin: 20px 0;
-}
-.documentation > div > p:last-child {
-  font-size: var(--type-small);
-  color: var(--text-muted);
-}
-.document-row {
-  border-top: 1px solid #aeb9aa;
-}
-.document-row:last-child {
-  border-bottom: 1px solid #aeb9aa;
-}
-.document-row > summary {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  padding: 20px 0;
-  cursor: pointer;
-  font:
-    400 clamp(20px, 1.7vw, 28px)/1.35 var(--font-heading);
-  min-height: 78px;
-}
-.document-code {
-  font: var(--type-caption) var(--font-body);
-  letter-spacing: 0.08em;
-  min-width: 40px;
-}
-.document-toggle {
-  margin-left: auto;
-  font:
-    25px Arial,
-    sans-serif;
-}
-.document-row[open] .document-toggle {
-  transform: rotate(45deg);
-}
-.document-row > div {
-  padding: 0 45px 26px 60px;
-}
-.document-row p {
-  font-size: var(--type-body);
-  margin-bottom: 15px;
-}
-.document-row .quiet {
-  font-size: var(--type-small);
-  color: var(--text-muted);
-}
 footer {
   display: flex;
   justify-content: space-between;
@@ -913,8 +857,7 @@ thead {
     font-size: 48px;
   }
   .research-stage,
-  .editorial-stage,
-  .documentation {
+  .editorial-stage {
     grid-template-columns: 34% 1fr;
     gap: 3%;
   }
@@ -941,9 +884,6 @@ thead {
   }
   .image-tabs button img {
     height: 50px;
-  }
-  .document-row > summary {
-    font-size: 21px;
   }
   .intro > p:last-child {
     font-size: 12px;
@@ -1249,33 +1189,6 @@ thead {
     order: 4;
     margin: 20px 0 0;
     width: 100%;
-  }
-  .documentation {
-    display: block;
-    padding: 30px 20px;
-  }
-  .documentation h2 {
-    font-size: var(--type-section);
-  }
-  .document-rows {
-    margin-top: 25px;
-  }
-  .document-row > summary {
-    font-size: 20px;
-    gap: 13px;
-    min-height: 80px;
-  }
-  .document-code {
-    min-width: 24px;
-  }
-  .document-row > div {
-    padding: 0 10px 22px 38px;
-  }
-  .document-row p {
-    font-size: var(--type-body);
-  }
-  .document-row .quiet {
-    font-size: var(--type-small);
   }
   .comparison {
     padding: 35px 20px;

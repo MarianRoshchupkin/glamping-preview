@@ -93,7 +93,7 @@
   max-width: 75ch;
   margin-bottom: 14px;
 }
-/* Editorial chapters use spacing; accordion and drawing boundaries keep their purpose. */
+/* Editorial chapters share the existing page rhythm. */
 #origin,
 #documentation,
 #contacts {
@@ -105,9 +105,6 @@
   z-index: 1;
   padding-top: clamp(48px, 6vw, 100px);
   padding-bottom: clamp(40px, 4vw, 72px);
-}
-#contacts {
-  padding-top: 40px;
 }
 @media (max-width: 900px) {
   .photo-cover .cover-copy h1 {
@@ -132,150 +129,11 @@
   }
 }
 
-/* Reserve only the label line; narrow layouts can wrap the combined code. */
-#active-document-code { min-block-size: 1lh; }
-.document-row .document-toggle { transition: transform 220ms ease; }
-@media (prefers-reduced-motion: reduce) {
-  .document-row .document-toggle { transition: none; }
-}
-/* Supplied contact details and variant notes stay within their existing sections. */
+/* Supplied family descriptions remain directly below their titles. */
 #families .atlas44-heading > p {
   max-width: 60ch;
   margin-top: 20px;
   line-height: var(--leading-body);
-}
-#families .atlas44-index-note {
-  order: 2;
-  margin-top: 6px;
-  font-size: var(--type-small);
-  line-height: var(--leading-body);
-  color: var(--text-muted);
-}
-#documentation .document-list {
-  margin: 0 0 15px;
-  padding-inline-start: 1.1em;
-  font-size: var(--type-body);
-  line-height: var(--leading-body);
-  color: var(--text-muted);
-  list-style-type: "–  ";
-}
-#documentation .document-list li { padding-left: 4px; margin-block: 4px; }
-#documentation .document-list li::marker { color: #7b8878; }
-#documentation .document-row p { line-height: var(--leading-body); margin-bottom: 12px; }
-#documentation { padding-bottom: 36px; }
-#contacts {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: start;
-  gap: 40px;
-}
-#contacts .contact-copy { min-width: 0; }
-#contacts .contact-copy > h2 {
-  max-width: 36ch;
-  margin: 0 0 8px;
-  font-size: clamp(24px, 2vw, 32px);
-  line-height: 1.4;
-}
-#contacts .contact-phone {
-  display: block;
-  width: fit-content;
-  min-height: 44px;
-  padding-block: 8px;
-  color: #24332b;
-  font-size: 24px;
-}
-#contacts .contact-email {
-  display: inline-block;
-  max-width: 100%;
-  padding-block: 12px;
-  color: #24332b;
-  font-size: clamp(16px, 1.6vw, 24px);
-  line-height: 1.5;
-  overflow-wrap: anywhere;
-}
-#contacts .contact-requisites {
-  max-width: 80ch;
-  margin-top: 24px;
-  font-size: var(--type-small);
-  line-height: var(--leading-body);
-}
-#contacts .contact-requisites h3 {
-  margin: 0;
-  color: #24332b;
-  font-size: 20px;
-}
-#contacts .contact-requisites > summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 44px;
-  gap: 20px;
-  padding-block: 10px;
-  border-block: 1px solid #aeb9aa;
-  cursor: pointer;
-}
-#contacts .contact-requisites-content { padding-top: 16px; }
-#contacts .contact-requisites[open] .document-toggle { transform: rotate(45deg); }
-#contacts .contact-company { margin-bottom: 16px; }
-#contacts .contact-requisites dl { margin: 0; }
-#contacts .contact-requisites dl > div {
-  display: grid;
-  grid-template-columns: 130px minmax(0, 1fr);
-  gap: 8px 20px;
-  padding-block: 6px;
-}
-#contacts .contact-requisites dt { font-weight: 600; }
-#contacts .contact-requisites dd {
-  margin: 0;
-  overflow-wrap: anywhere;
-}
-@media (max-width: 900px) {
-  #documentation { display: block; }
-  #active-document-code { min-block-size: 2lh; }
-  #documentation .document-rows { margin-top: 25px; }
-  #contacts { grid-template-columns: minmax(0, 1fr); }
-}
-@media (max-width: 600px) {
-  #contacts .contact-requisites dl > div {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 2px;
-  }
-}
-
-/* Official support marks retain their full artwork and the FSI protective padding. */
-#contacts .fsi-support {
-  display: grid;
-  width: 540px;
-  max-width: 100%;
-  min-width: 0;
-  align-self: start;
-  gap: 20px;
-}
-#contacts .support-logos {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px;
-}
-#contacts .platform-mark {
-  display: block;
-  width: 240px;
-  max-width: 100%;
-  padding: 16px;
-}
-#contacts .platform-mark img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-}
-#contacts .support-copy {
-  margin: 0;
-  font-size: var(--type-small);
-  line-height: var(--leading-body);
-}
-@media (max-width: 900px) {
-  #contacts .support-logos { justify-content: center; }
 }
 
 /* The native index remains the complete fallback until gallery enhancement succeeds. */
@@ -286,21 +144,182 @@
   font-size: var(--type-body);
   line-height: var(--leading-body);
 }
+/* Static editorial catalog: every chapter contributes its own natural height. */
+#documentation {
+  padding-inline: var(--gutter);
+}
+#documentation .documentation-heading {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 7%;
+  align-items: end;
+  margin-bottom: clamp(32px, 4vw, 64px);
+}
+#documentation .documentation-heading > .eyebrow { grid-column: 1 / -1; }
+#documentation h2 {
+  margin: 0;
+  font: 400 var(--type-section)/var(--leading-heading) var(--font-heading);
+}
+#documentation .documentation-heading > p:last-child {
+  max-width: 58ch;
+  margin: 0;
+  color: var(--text-muted);
+}
+#documentation .document-chapter {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 2fr);
+  gap: 7%;
+  padding-block: clamp(32px, 4vw, 64px);
+  border-top: 1px solid #aeb9aa;
+  scroll-margin-top: 24px;
+}
+#documentation .document-chapter:last-child { padding-bottom: 0; }
+#documentation .document-heading h3 {
+  margin: 16px 0 0;
+  font: 400 var(--type-subheading)/1.2 var(--font-heading);
+}
+#documentation .document-content { min-width: 0; }
+#documentation .document-content > p {
+  max-width: 70ch;
+  margin: 0 0 16px;
+}
+#documentation .document-content > p:first-child { margin-bottom: 24px; }
+#documentation .document-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px 36px;
+  margin: 0;
+  padding-inline-start: 1.15em;
+  color: var(--text-muted);
+  list-style-type: "–  ";
+}
+#documentation .document-list li { padding-left: 4px; }
+#documentation .document-list li::marker { color: #52614f; }
+#documentation .quiet {
+  margin-top: 24px;
+  color: var(--text-muted);
+  font-size: var(--type-small);
+}
+#documentation .document-subheading,
+#documentation .document-expanded h4 {
+  margin: 0 0 12px;
+  font: 400 24px/1.3 var(--font-heading);
+}
+#documentation .document-expanded {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid #aeb9aa;
+}
+#documentation .document-expanded > p:not(.eyebrow) { margin: 0 0 20px; }
 #documentation .document-previews {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
-  margin-block: 20px;
+  gap: 12px;
+  margin-top: 32px;
 }
 #documentation .document-previews img {
   display: block;
   width: 100%;
   height: auto;
+  aspect-ratio: 480 / 340;
+  object-fit: contain;
   border: 1px solid #d6d9ce;
 }
-#documentation .document-expanded {
-  margin-top: 24px;
-  padding-top: 20px;
+
+#contacts {
+  display: block;
+  padding: clamp(40px, 4vw, 64px) var(--gutter);
+  color: #24332b;
+  font: var(--type-body)/var(--leading-body) var(--font-body);
+}
+#contacts .contact-cta {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 40px 7%;
+  align-items: end;
+  padding-block: clamp(32px, 4vw, 64px);
   border-top: 1px solid #aeb9aa;
 }
-#documentation .document-expanded h3 { margin-bottom: 12px; font-size: 20px; line-height: 1.35; }
+#contacts .contact-copy h2 {
+  max-width: 17ch;
+  margin: 20px 0;
+  font: 400 var(--type-section)/var(--leading-heading) var(--font-heading);
+}
+#contacts .contact-copy > p:last-child {
+  max-width: 56ch;
+  margin: 0;
+  color: var(--text-muted);
+}
+#contacts .contact-links a {
+  display: block;
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding-block: 8px;
+  overflow-wrap: anywhere;
+  line-height: 1.5;
+}
+#contacts .contact-phone { font-size: clamp(24px, 2.2vw, 32px); }
+#contacts .contact-email { font-size: clamp(16px, 1.3vw, 20px); }
+#contacts .contact-information {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.3fr;
+  gap: 40px;
+  align-items: start;
+  padding-top: 32px;
+  border-top: 1px solid #aeb9aa;
+}
+#contacts .contact-information > section { min-width: 0; }
+#contacts .contact-information h3 {
+  margin: 0 0 20px;
+  font: 400 24px/1.3 var(--font-heading);
+}
+#contacts .contact-company {
+  margin: 0 0 20px;
+  font-size: var(--type-body);
+}
+#contacts dl { margin: 0; }
+#contacts dl > div {
+  display: grid;
+  grid-template-columns: minmax(64px, auto) minmax(0, 1fr);
+  gap: 8px 16px;
+  padding-block: 8px;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
+}
+#contacts dt { color: var(--text-muted); }
+#contacts dd { margin: 0; overflow-wrap: anywhere; }
+#contacts .contact-bank dl > div { grid-template-columns: 1fr; gap: 4px; }
+#contacts .fsi-support { display: block; }
+#contacts .support-logos {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+#contacts .platform-mark { display: block; width: 180px; max-width: 100%; padding: 16px; }
+#contacts .platform-mark img { display: block; width: 100%; height: auto; object-fit: contain; }
+#contacts .support-copy {
+  margin: 0;
+  font-size: var(--type-small);
+  line-height: var(--leading-body);
+  color: var(--text-muted);
+}
+@media (max-width: 1300px) {
+  #contacts .contact-information { grid-template-columns: 1fr 1fr; }
+  #contacts .fsi-support { grid-column: 1 / -1; max-width: 66ch; }
+}
+@media (max-width: 900px) {
+  #documentation .documentation-heading,
+  #documentation .document-chapter,
+  #contacts .contact-cta { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  #documentation .document-list { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+  #documentation .document-heading h3 { max-width: 20ch; }
+  #contacts .contact-copy h2 { max-width: 19ch; }
+}
+@media (max-width: 600px) {
+  #documentation .document-previews { gap: 6px; }
+  #contacts .contact-information { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  #contacts .fsi-support { grid-column: auto; }
+}
